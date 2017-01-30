@@ -5,7 +5,7 @@ Initial ideas:
 
 1) Need an image writer. Options are:
   Pi Bakery
-  http://plugwash.raspbian.org/build-image
+  http://plugwash.raspbian.org/build-image /n
   http://blog.kmp.or.at/2012/05/build-your-own-raspberry-pi-image/
   https://github.com/andrius/build-raspbian-image
   https://github.com/b-s101/build-raspberrypi-image
