@@ -38,7 +38,7 @@ Initial ideas:
   Wifi/ethernet setup
   TeamViewer setup - need to get id, method of generating p'word, or use static? Also possibility of changing framebuffer resolution 
   VNC at boot: http://www.makeuseof.com/tag/run-remote-desktop-raspberry-pi-vnc/
-  Static IP address... change the dynamic one to static one
+  Static IP address... change the dynamic one to static one.
   
 5) CNC gui/interface
   Default to headless use, or try and fit on LCD?
