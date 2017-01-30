@@ -24,18 +24,20 @@ Initial ideas:
     kTinker
     etc...
   or other GCode streamers: GRBLWeb? UGS? Chillipepper?
-  TeamViewer
+  TeamViewer -https://www.youtube.com/watch?v=vr3Gf8vnKAg https://pages.teamviewer.com/published/raspberrypi/
   SSH
-  VNC?
+  VNC? - http://www.makeuseof.com/tag/run-remote-desktop-raspberry-pi-vnc/
+  Xming?
   Camera?
-  LCD drivers (if using LCD)
-  XDRP (for Windows remote Desktop)
+  LCD drivers (if using LCD) - https://github.com/swkim01/waveshare-dtoverlays
+  XDRP (for Windows remote Desktop), RDP (windows) or RC Client for Mac/iOS (https://itunes.apple.com/us/app/microsoft-remote-desktop/id714464092?mt=8)
   
 4) Settings to update:
   RPi hostname (?)
   RPi p'wrd
   Wifi/ethernet setup
-  TeamViewer setup - need to get id, method of generating p'word, or use static?
+  TeamViewer setup - need to get id, method of generating p'word, or use static? Also possibility of changing framebuffer resolution 
+  VNC at boot: http://www.makeuseof.com/tag/run-remote-desktop-raspberry-pi-vnc/
   Static IP address... change the dynamic one to static one
   
 5) CNC gui/interface
