@@ -5,7 +5,7 @@ Initial ideas:
 
 1) Need an image writer. Options are:
   Pi Bakery
-  http://plugwash.raspbian.org/build-image /n
+  http://plugwash.raspbian.org/build-image
   http://blog.kmp.or.at/2012/05/build-your-own-raspberry-pi-image/
   https://github.com/andrius/build-raspbian-image
   https://github.com/b-s101/build-raspberrypi-image
@@ -15,3 +15,37 @@ Initial ideas:
   small TFT LCD touchscreen display?
   manual search on main computer, using arp -a etc?
   audio blast from RPi on first startup?
+
+3) Things to install/enable:
+  Latest Raspbian
+  bCNC
+    ...and dependancies:
+    pySerial
+    kTinker
+    etc...
+  or other GCode streamers: GRBLWeb? UGS? Chillipepper?
+  TeamViewer
+  SSH
+  VNC?
+  Camera?
+  LCD drivers (if using LCD)
+  XDRP (for Windows remote Desktop)
+  
+4) Settings to update:
+  RPi hostname (?)
+  RPi p'wrd
+  Wifi/ethernet setup
+  TeamViewer setup - need to get id, method of generating p'word, or use static?
+  Static IP address... change the dynamic one to static one
+  
+5) CNC gui/interface
+  Default to headless use, or try and fit on LCD?
+  Use direct bCNC input?
+  Or use thin layer on top, accessing bCNC commads using shell scripts?
+    would require some minimal feedback options: spindle position, hitting stops, tool changes etc etc
+  Push CAM file to bCNC from main Computer? Pull CAM file from RPi?
+    definitely needs some kind of human interface at the machine. Can be v simple - "GO" button, or can be more involved - interface for downloading the file. Depends on whether LCD display is setup or not.
+  Need some kind of homing procedure.
+    
+  
+  
