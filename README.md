@@ -30,7 +30,7 @@ Initial ideas:
   Xming?
   Camera?
   LCD drivers (if using LCD) - https://github.com/swkim01/waveshare-dtoverlays
-  XDRP (for Windows remote Desktop), RDP (windows) or RC Client for Mac/iOS (https://itunes.apple.com/us/app/microsoft-remote-desktop/id714464092?mt=8)
+  XDRP (for Windows remote Desktop), RDP (windows) or RD Client for Mac/iOS (https://itunes.apple.com/us/app/microsoft-remote-desktop/id714464092?mt=8). *UPDATE just found out that Windows RD Client keyboard doesn't work properly from iOs... alternatives that should work with xrdp are http://www.freerdp.com/ and http://www.rdesktop.org/
   
 4) Settings to update:
   RPi hostname (?)
