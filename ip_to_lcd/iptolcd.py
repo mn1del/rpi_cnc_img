@@ -145,20 +145,17 @@ def main():
   # Initialise display
   lcd_init()
  
-  # Display loop
-  while True:
- 
-    # Send first IP address to the LCD
-    lcd_string("ip_type_a",LCD_LINE_1)
-    lcd_string("ipaddr_a",LCD_LINE_2)
+  # Send first IP address to the LCD
+  lcd_string("ip_type_a",LCD_LINE_1)
+  lcd_string("ipaddr_a",LCD_LINE_2)
 
-    time.sleep(5)
+  time.sleep(20)
 
-    # Send second IP address to the LCD
-    lcd_string("ip_type_b",LCD_LINE_1)
-    lcd_string("ipaddr_b",LCD_LINE_2)
+  # Send second IP address to the LCD
+  lcd_string("ip_type_b",LCD_LINE_1)
+  lcd_string("ipaddr_b",LCD_LINE_2)
 
-    time.sleep(5)
+  time.sleep(20)
 
 def lcd_init():
   # Initialise display
