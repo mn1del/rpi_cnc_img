@@ -1,0 +1,18 @@
+{
+    "name": "ip_to_lcd",
+    "text": "Find and Display IP Address\\nDisplay Method: %1",
+    "script": "iptolcd.py",
+    "network": true,
+    "continue": true,
+    "type": "network",
+    "category": "network",
+    "shortDescription":"Finds your RPi's wlan or ethernet IP Address and displays it on the LCD screen.",
+    "longDescription":"Finds your RPi's wlan or ethernet IP Address and displays it on the LCD screen.",
+    "args": [
+        {
+            "type": "text",
+            "default": "LCD",
+            "maxLength":0
+        }
+    ]
+}
