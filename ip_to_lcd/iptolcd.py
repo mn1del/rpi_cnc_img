@@ -1,3 +1,4 @@
+#!/usr/bin/python
 __author__ = 'Cody Giles'
 __license__ = "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 __version__ = "1.0"
