@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=bCNC
+Comment=Open bCNC
+Icon=/usr/share/pixmaps/openbox.xpm
+Exec=~/bCNC/bCNC
+Type=Application
+Encoding=UTF-8
+Terminal=false
