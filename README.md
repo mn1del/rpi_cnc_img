@@ -9,6 +9,7 @@ Initial ideas:
   http://blog.kmp.or.at/2012/05/build-your-own-raspberry-pi-image/
   https://github.com/andrius/build-raspbian-image
   https://github.com/b-s101/build-raspberrypi-image
+  http://www.instructables.com/id/Raspbian-Pi-Customized-Unattended-Installation/ *** combine with GUI for password input??
   ***Update: PiBakery works well, and offers GUI interface for user-input passwords etc
 
 2) Method to easily get the RPi's IP address:
