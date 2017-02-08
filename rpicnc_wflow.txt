@@ -16,13 +16,18 @@
 	- sudo aptitude install python-pip -y
 	- sudo pip install pyserial --upgrade -y
 	- sudo aptitude install python python-tk idle python-pmw python-imaging -y
+	- sudo aptitude install arduino arduino-core arduino-mk -y
     # web downloads/clones
     - cd ~/
 	- sudo git clone https://github.com/vlachoudis/bCNC.git
 	- sudo git clone https://github.com/mn1del/rpi_cnc_img.git
 	- wget http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb
+	- wget https://github.com/Protoneer/GRBL-Arduino-Library/archive/master.zip
 	# bCNC Desktop Shortcut
     - mv /home/pi/rpi_cnc_img/bCNC.desktop /home/pi/Desktop/  
+	# Arduino GRBL library (see http://blog.protoneer.co.nz/grbl-arduino-library/). Also see:    http://pblog.ebaker.me.uk/2014/01/uploading-arduino-sketch-from-raspberry.html
+	- sudo usermod -a -G dialout pi # adds user to dialout group to enable uploading to Arduino
+	- sudo unzip GRBL-Arduino-Library.zip -d /usr/share/Ardunio/libraries **** or whatever is correct *****
 	# Waveshare TFT touchscreen LCD driver
 	-  tar xvf /home/pi/rpi_cnc_img/LCD-show-[0-9]{6}\.tar\.gz --directory /home/pi/  # extract Waveshare driver
 	- cd /home/pi/LCD-show
