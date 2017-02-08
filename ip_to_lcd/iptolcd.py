@@ -5,6 +5,11 @@
 # __maintainer__ = "Cody Giles"
 # __status__ = "Production"
 
+
+# The first part of the script finds the device's network IP address
+# The second part of the script flashes the IP address to a 16x2 LCD display
+
+
 import subprocess
 import smtplib
 from email.mime.text import MIMEText
