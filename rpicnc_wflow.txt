@@ -1,0 +1,30 @@
+# Notes on rpi_cnc_img first boot workflow
+
+# Pre-made PiBakery Blocks:
+	- Install latest Raspbian (done - PiBakery)
+	- Change RPi password
+	- Setup network access & password (done - PiBakery Block)
+
+# Scripts (either all run from python, or individually as PiBakery commands)
+	# package installations
+	- ******* raspi-config expand filesytem
+	- ******* raspi-config Desktop Autologin
+	- sudo aptitude update (done)
+	- sudo aptitude install git -y
+	- sudo aptitude install zip unzip -y
+	- sudo aptitude install xrdp -y
+	- sudo aptitude install python-pip -y
+	- sudo pip install pyserial --upgrade -y
+	- sudo aptitude install python python-tk idle python-pmw python-imaging -y
+    # web downloads/clones
+    - cd ~/
+	- sudo git clone https://github.com/vlachoudis/bCNC.git
+	- sudo git clone https://github.com/mn1del/rpi_cnc_img.git
+	- wget http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb
+	# bCNC Desktop Shortcut
+    - mv /home/pi/rpi_cnc_img/bCNC.desktop /home/pi/Desktop/  
+	# Waveshare TFT touchscreen LCD driver
+	-  tar xvf /home/pi/rpi_cnc_img/LCD-show-[0-9]{6}\.tar\.gz --directory /home/pi/  # extract Waveshare driver
+	- cd /home/pi/LCD-show
+	- ./LCD32-show # or ./LCD35 ./LCD5 etc depending on LCD model
+	# ***** System will auto-reboot ******
