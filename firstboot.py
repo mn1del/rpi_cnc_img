@@ -36,4 +36,10 @@ yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
     sp.call(["sudo", "aptitude", "safe-upgrade"])
 
-# ******* REBOOT HERE, then requires follow up first boot script *************
+# set call for secondboot.py
+f = open("/etc/rc.local","a")
+f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
+f.close
+
+# reboot
+sp.call(["sudo", "usermod", "-a", "-G", "dialout", "pi"])
