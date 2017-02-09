@@ -95,6 +95,10 @@ if yesno == "y" or debugmode == False:
     sketch.write("ARDUINO_PORT = /dev/ttyACM*")  # not sure if "*" works
     sketch.write("ARDUINO_LIBS = include /usr/share/arduino/Arduino.mk")
     sketch.close()
+
+# upload GRBL to Arduino
+yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
+if yesno == "y" or debugmode == False:
     sp.call(["cd",grbldir + "/examples"])
     # sp.call(["sudo", "make"])  # test that the sketch compiles
     sp.call(["sudo", "make", "upload"])  # upload to arduino
