@@ -8,7 +8,7 @@ import subprocess as sp
 import os
 import helpy as h
 
-debugmode = True  # if True, then requires a user prompt for every action
+debugmode = False  # if True, then requires a user prompt for every action
 
 # INITIAL CONFIGS (BEFORE REBOOT)
 
@@ -39,7 +39,7 @@ if yesno == "y" or debugmode == False:
 # perhaps one for second boot?
 yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude safe-upgrade -y")
+#    h.cmdcall("sudo aptitude safe-upgrade -y")
 #    sp.call(shellcmd.split())
 #   sp.call(["sudo", "aptitude", "safe-upgrade"])
 
