@@ -30,6 +30,11 @@ if yesno == "y" or debugmode == False:
     if os.path.isfile("etc/pointercal.xinput"):
         h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
 
+# remove unnecessary packages
+yesno = raw_input("Remove unnecessary packages? (y/n) ")
+if yesno == "y" or debugmode == False:
+    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common"
+
 # upgrade packages
 # perhaps one for second boot?
 yesno = raw_input("Upgrade packages? (y/n) ")
