@@ -70,17 +70,8 @@ if yesno == "y" or debugmode == False:
 # ****************************************************************************
 yesno = raw_input("Install GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo updatedb")  # update/build database for "locate" 
-#    sp.call(["sudo", "updatedb"])  # update/build database for "locate" 
-    # search for regex pattern for an arduino file
-    arduinof = sp.call(["locate", "-br", "^arduino\.[0-9]*"])
-#    arduinof = h.cmdcall("locate -br ^arduino\.[0-9]*")  # find file
-#    arduinof = sp.call(["locate", "-br", "^arduino\.[0-9]*"])  # find file
-    grbldir = os.path.dirname(os.path.abspath(arduinof)) + "/libraries/grbl"  # get path
-    # sp.call(["wget", "https://github.com/Protoneer/GRBL-Arduino-Library/archive/master.zip"])
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git" + grbldir)  # clone into specified directory
-#    sp.call(["sudo", "git", "clone","https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])  # clone into specified directory
     sketch = open(grbldir + "/examples/Makefile","w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino")
     sketch.write("BOARD_TAG = uno")
@@ -92,15 +83,11 @@ if yesno == "y" or debugmode == False:
 yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("cd " + grbldir + "/examples")
-#    sp.call(["cd",grbldir + "/examples"])
-    # sp.call(["sudo", "make"])  # test that the sketch compiles
     h.cmdcall("sudo make")  # test that the sketch compiles
     h.cmdcall("sudo make upload")  # upload to arduino
-#    sp.call(["sudo", "make", "upload"])  # upload to arduino
     # ***** alternative way - seems better *************
     # sp.call(["arduino", "--upload", grbldir + "/examples/GRBLtoArduino.ino", "--port", "/dev/ttyUSB*"])  # check port name
     h.cmdcall("cd /home/pi")
-#    sp.call(["cd", "/home/pi"])
 
 # clone bCNC
 yesno = raw_input("Clone bCNC? (yes/no)")
