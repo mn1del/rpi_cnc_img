@@ -21,7 +21,7 @@ if yesno == "y" or debugmode == False:
 
 # Enable PiScreenDrivers and configure calibration settings
 # calibration steps come from http://ozzmaker.com/forums/topic/piscreen-raspberripi2-touchscreen-calibration/
-h.cmdcall("sudo sed -i """$ a\dtoverlay=piscreen,speed=16000000,rotate=90""" /boot/config.txt")
+#h.cmdcall("sudo sed -i """$ a\dtoverlay=piscreen,speed=16000000,rotate=90""" /boot/config.txt")
 sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=90", "/boot/config.txt"])
 # f = open("/boot/config.txt","a")
 # f.write("dtoverlay=piscreen,speed=16000000,rotate=90")
