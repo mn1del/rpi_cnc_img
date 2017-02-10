@@ -18,6 +18,14 @@ if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install tightvncserver -y")
 #    sp.call(["sudo", "aptitude", "install","tightvncserver","-y"])
 
+# upgrade packages
+# perhaps one for second boot?
+yesno = raw_input("Upgrade packages? (y/n) ")
+if yesno == "y" or debugmode == False:
+    h.cmdcall("sudo aptitude safe-upgrade -y")
+#    sp.call(shellcmd.split())
+#   sp.call(["sudo", "aptitude", "safe-upgrade"])
+
 # install zip/unzip
 yesno = raw_input("Install zip/unzip? (y/n) ")
 if yesno == "y" or debugmode == False:
@@ -65,7 +73,8 @@ if yesno == "y" or debugmode == False:
     h.cmdcall("sudo updatedb")  # update/build database for "locate" 
 #    sp.call(["sudo", "updatedb"])  # update/build database for "locate" 
     # search for regex pattern for an arduino file
-    arduinof = h.cmdcall("locate -br ^arduino\.[0-9]*")  # find file
+    arduinof = sp.call(["locate", "-br", "^arduino\.[0-9]*"])
+#    arduinof = h.cmdcall("locate -br ^arduino\.[0-9]*")  # find file
 #    arduinof = sp.call(["locate", "-br", "^arduino\.[0-9]*"])  # find file
     grbldir = os.path.dirname(os.path.abspath(arduinof)) + "/libraries/grbl"  # get path
     # sp.call(["wget", "https://github.com/Protoneer/GRBL-Arduino-Library/archive/master.zip"])
@@ -114,7 +123,8 @@ if yesno == "y" or debugmode == False:
 
 # set call for everyboot.py
 # replaces previous call for secondboot.py
-h.cmdcall("sed -i s/secondboot\.py/everyboot\.py /etc/rc.local")
+sp.call(["sed", "-i", "s/secondboot\.py/everyboot\.py", "/etc/rc.local"])
+#h.cmdcall("sed -i s/secondboot\.py/everyboot\.py /etc/rc.local")
 # f = open("/etc/rc.local","a")
 # f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
 # f.close
