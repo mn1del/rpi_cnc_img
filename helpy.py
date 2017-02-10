@@ -50,6 +50,6 @@ def chginfile_re(strFilePath, regexFrom, strTo):
 
 # cmdcall() - takes a string and passes it into subprocess.call()
 # effectively mimics entering a command diarectly into the shell
-def cmdcall(commandString)
+def cmdcall(commandString):
     "calls command ""commandString"", as if entered in the CLI"
     subprocess.call(commandString.split())

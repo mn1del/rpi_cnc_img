@@ -12,12 +12,6 @@ debugmode = True  # if True, then requires a user prompt for every action
 
 # INITIAL CONFIGS (BEFORE REBOOT)
 
-# Expand Filesystem
-yesno = raw_input("Expand Filesystem? (y/n) ")
-if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo raspi-config nonint do_expand_rootfs")
-#    sp.call(["sudo", "raspi-config", "nonint", "do_expand_rootfs"])
-
 # Enable arduino uploading
 # requires reboot
 yesno = raw_input("Enable Arduino uploading? (y/n) ")
@@ -27,9 +21,10 @@ if yesno == "y" or debugmode == False:
 
 # Enable PiScreenDrivers and configure calibration settings
 # calibration steps come from http://ozzmaker.com/forums/topic/piscreen-raspberripi2-touchscreen-calibration/
-f = open("/boot/config.txt","a")
-f.write("dtoverlay=piscreen,speed=16000000,rotate=90")
-f.close
+h.cmdcall("sudo sed -i $ a\dtoverlay=piscreen,speed=16000000,rotate=90 /boot/config.txt")
+# f = open("/boot/config.txt","a")
+# f.write("dtoverlay=piscreen,speed=16000000,rotate=90")
+# f.close
 h.cmdcall("sed -i /^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axes (?i)Swap*$ /s/^/#/ /etc/X11/xinit/xinitrc")
 # sp.call(shellcmd.split())
 h.cmdcall("sed -i /^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev Axis (?i)Inversion*$ /s/^/#/ /etc/X11/xinit/xinitrc")
