@@ -33,7 +33,7 @@ if yesno == "y" or debugmode == False:
 # remove unnecessary packages
 yesno = raw_input("Remove unnecessary packages? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common"
+    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common")
 
 # upgrade packages
 # perhaps one for second boot?
@@ -44,7 +44,7 @@ if yesno == "y" or debugmode == False:
 #   sp.call(["sudo", "aptitude", "safe-upgrade"])
 
 # set call for secondboot.py
-sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
 #f = open("/etc/rc.local","a")
 #f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
 #f.close
