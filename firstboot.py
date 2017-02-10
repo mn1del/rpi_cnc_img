@@ -22,7 +22,7 @@ if yesno == "y" or debugmode == False:
 # Enable PiScreenDrivers and configure calibration settings
 # calibration steps come from http://ozzmaker.com/forums/topic/piscreen-raspberripi2-touchscreen-calibration/
 yesno = raw_input("Enable Arduino uploading? (y/n) ")
-    if yesno == "y" or debugmode == False:
+if yesno == "y" or debugmode == False:
     #h.cmdcall("sudo sed -i """$ a\dtoverlay=piscreen,speed=16000000,rotate=90""" /boot/config.txt")
     sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=90", "/boot/config.txt"])
     # f = open("/boot/config.txt","a")
