@@ -12,6 +12,9 @@ import os
 import helpy as h
 
 
+debugmode = False
+
+
 # install tightvncserver
 if debugmode == False:
     yesno = "y"
@@ -162,9 +165,13 @@ sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d.disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
 # reboot
-if debugmode == False:
-    yesno = "y"
-else:
-    yesno = raw_input("Reboot? (y/n) ")
-if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo shutdown -r")
+#if debugmode == False:
+#    yesno = "y"
+#else:
+#    yesno = raw_input("Reboot? (y/n) ")
+#if yesno == "y" or debugmode == False:
+#    h.cmdcall("sudo shutdown -r")
+
+# set call for everyboot.py
+sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
+
