@@ -102,7 +102,7 @@ else:
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
-    sketch = open(grbldir + "/examples/Makefile","w")
+    sketch = open(grbldir + "/examples/GRBLtoArduino/Makefile","w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino")
     sketch.write("BOARD_TAG = uno")
     sketch.write("ARDUINO_PORT = /dev/ttyACM*")  # not sure if "*" works
