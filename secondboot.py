@@ -152,7 +152,7 @@ if yesno == "y" or debugmode == False:
 
 # set call for everyboot.py
 # replaces previous call for secondboot.py
-sp.call(["sed", "-i", "s/secondboot\.py/everyboot\.py", "/etc/rc.local"])
+sp.call(["sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"])
 #h.cmdcall("sed -i s/secondboot\.py/everyboot\.py /etc/rc.local")
 # f = open("/etc/rc.local","a")
 # f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
@@ -164,6 +164,15 @@ sp.call(["sudo", "sed", "-i", "$ a\xset s off\xset -dpms\xset s noblank", "/etc/
 sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d.disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
+# set call for everyboot.py
+sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
+
+# set login to GUI autologin
+#auto login
+sp.call(["sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1", "/etc/rc.local"])
+#auto startx
+sp.call(["sudo", "sed", "-i", "/exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
+
 # reboot
 #if debugmode == False:
 #    yesno = "y"
@@ -172,6 +181,4 @@ sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/x
 #if yesno == "y" or debugmode == False:
 #    h.cmdcall("sudo shutdown -r")
 
-# set call for everyboot.py
-sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
