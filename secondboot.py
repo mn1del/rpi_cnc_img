@@ -160,8 +160,8 @@ sp.call(["sudo", "sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"
 
 # Set up X Windows for the piscreen
 sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])
-sp.call(["sudo", "sed", "-i", "$ a\xset s off\xset -dpms\xset s noblank", "/etc/X11/Xsession.d/disableblank.sh"])
-sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d.disableblank.sh"])
+sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/diableblank.sh", "/etc/X11/Xsession.d/"])
+sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
 # set call for everyboot.py
