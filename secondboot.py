@@ -160,7 +160,7 @@ sp.call(["sudo", "sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"
 
 # Set up X Windows for the piscreen
 sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])
-sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/diableblank.sh", "/etc/X11/Xsession.d/"])
+sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
 sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
@@ -169,7 +169,7 @@ sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboo
 
 # set login to GUI autologin
 #auto login
-sp.call(["sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
 #auto startx
 sp.call(["sudo", "sed", "-i", "/exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
 
