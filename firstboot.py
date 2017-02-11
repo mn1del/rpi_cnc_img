@@ -39,8 +39,8 @@ if yesno == "y":
     #sp.call(["sudo", "sed", "-i", "/^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axis (?i)Inversion*$ /s/^/#/", "/etc/X11/xinit/xinitrc"])
     #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
 
-    if os.path.isfile("etc/pointercal.xinput"):
-        h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
+    #if os.path.isfile("etc/pointercal.xinput"):
+        #h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
 
 # remove unnecessary packages
 # yesno = raw_input("Remove unnecessary packages? (y/n) ")
