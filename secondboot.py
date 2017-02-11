@@ -68,7 +68,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install pyserial? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo pip install pyserial --upgrade -y")
+    h.cmdcall("sudo pip install pyserial --upgrade")
 #    sp.call(["sudo", "pip", "install", "pyserial", "--upgrade", "-y"])
 
 # install python
@@ -101,7 +101,7 @@ else:
     yesno = raw_input("Install GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
-    h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git" + grbldir)  # clone into specified directory
+    h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
     sketch = open(grbldir + "/examples/Makefile","w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino")
     sketch.write("BOARD_TAG = uno")
