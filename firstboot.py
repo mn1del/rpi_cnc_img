@@ -18,10 +18,8 @@ if debugmode == False:
     yesno = "y"
 else:
     yesno = raw_input("Enable Arduino uploading? (y/n) ")
-
 if yesno == "y":
-    h.cmdcall("sudo usermod -a -G dialout pi")
-#    sp.call(shellcmd.split())
+    sp.call(["sudo", "usermod", "-a", "-G", "dialout", "pi"])
 
 # Enable PiScreenDrivers and configure calibration settings
 # calibration steps come from http://ozzmaker.com/forums/topic/piscreen-raspberripi2-touchscreen-calibration/
@@ -29,12 +27,11 @@ if debugmode == False:
     yesno = "y"
 else:
     yesno = raw_input("Enable Piscreen? (y/n) ")
-
 if yesno == "y":
     sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=90", "/boot/config.txt"])
     # for boot to CLI:
     sp.call(["cp", "/boot/cmdline.txt", "/home/pi/cmdline.txt"])   # backup cmdline.txt
-    sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11" /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
+    sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11/", "/boot/cmdline.txt"])
 
     sp.call(
     sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])  # install X server utilities
