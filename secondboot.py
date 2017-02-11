@@ -152,7 +152,7 @@ if yesno == "y" or debugmode == False:
 
 # set call for everyboot.py
 # replaces previous call for secondboot.py
-sp.call(["sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"])
 #h.cmdcall("sed -i s/secondboot\.py/everyboot\.py /etc/rc.local")
 # f = open("/etc/rc.local","a")
 # f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
