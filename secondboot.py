@@ -171,7 +171,7 @@ sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/x
 #auto login
 sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
 #auto startx
-sp.call(["sudo", "sed", "-i", "/exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
 
 

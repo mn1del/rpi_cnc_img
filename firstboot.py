@@ -38,7 +38,7 @@ if yesno == "y":
     #sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])  # install X server utilities
     #sp.call(["sudo", "sed", "-i", "/^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axes (?i)Swap*$ /s/^/#/", "/etc/X11/xinit/xinitrc"])
     #sp.call(["sudo", "sed", "-i", "/^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axis (?i)Inversion*$ /s/^/#/", "/etc/X11/xinit/xinitrc"])
-    #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
+    sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
 
     #if os.path.isfile("etc/pointercal.xinput"):
         #h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
@@ -50,7 +50,7 @@ if yesno == "y":
 
 # set call for secondboot.py
 #sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/exit 0/i \sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
 
 #f = open("/etc/rc.local","a")
 #f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
