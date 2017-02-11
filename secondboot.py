@@ -165,20 +165,22 @@ sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
 # set call for everyboot.py
-sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
+# sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
 # set login to GUI autologin
 #auto login
 sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
 #auto startx
 sp.call(["sudo", "sed", "-i", "/exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
+
 
 # reboot
-#if debugmode == False:
-#    yesno = "y"
-#else:
-#    yesno = raw_input("Reboot? (y/n) ")
-#if yesno == "y" or debugmode == False:
-#    h.cmdcall("sudo shutdown -r")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Reboot? (y/n) ")
+if yesno == "y" or debugmode == False:
+    h.cmdcall("sudo shutdown -r")
 
 
