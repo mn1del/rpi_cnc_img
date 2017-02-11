@@ -13,51 +13,75 @@ import helpy as h
 
 
 # install tightvncserver
-yesno = raw_input("Install tightvncserver? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install tightvncserver? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install tightvncserver -y")
 #    sp.call(["sudo", "aptitude", "install","tightvncserver","-y"])
 
 # upgrade packages
 # perhaps one for second boot?
-yesno = raw_input("Upgrade packages? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude safe-upgrade -y")
 #    sp.call(shellcmd.split())
 #   sp.call(["sudo", "aptitude", "safe-upgrade"])
 
 # install zip/unzip
-yesno = raw_input("Install zip/unzip? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install zip/unzip? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install zip unzip -y")
 #    sp.call(["sudo", "aptitude", "install", "zip", "unzip", "-y"])
 
 # install xrdp
-yesno = raw_input("Install xrdp? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install xrdp? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install xrdp -y")
 #    sp.call(["sudo", "aptitude", "install","xrdp","-y"])
 
 # install pip
-yesno = raw_input("Install pip? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install pip? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install python-pip -y")
 #    sp.call(["sudo", "aptitude", "install", "python-pip", "-y"])
 
 # install pyserial
-yesno = raw_input("Install pyserial? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install pyserial? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo pip install pyserial --upgrade -y")
 #    sp.call(["sudo", "pip", "install", "pyserial", "--upgrade", "-y"])
 
 # install python
-yesno = raw_input("Install python? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install python? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install python python-tk python-pmw python-imaging -y")
 #    sp.call(["sudo", "aptitude", "install", "python", "python-tk", "python-pmw", "python-imaging", "-y"])
 
 # install arduino
-yesno = raw_input("Install arduino? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install arduino arduino-core arduino-mk -y")
 #    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
@@ -68,7 +92,10 @@ if yesno == "y" or debugmode == False:
 # **** otherwise the sp.call(["locate"...]) and os.path.* functions   ********
 # **** are intended to find it. **********************************************
 # ****************************************************************************
-yesno = raw_input("Install GRBL? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git" + grbldir)  # clone into specified directory
@@ -80,7 +107,10 @@ if yesno == "y" or debugmode == False:
     sketch.close()
 
 # upload GRBL to Arduino
-yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("cd " + grbldir + "/examples")
     h.cmdcall("sudo make")  # test that the sketch compiles
@@ -90,20 +120,29 @@ if yesno == "y" or debugmode == False:
     h.cmdcall("cd /home/pi")
 
 # clone bCNC
-yesno = raw_input("Clone bCNC? (yes/no)")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Clone bCNC? (yes/no)")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo git clone https://github.com/vlachoudis/bCNC.git")
 #    sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"])
 
 # Create bCNC Desktop Shortcut 
-yesno = raw_input("Create bCNC Desktop Shortcut? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Create bCNC Desktop Shortcut? (y/n) ")
 if yesno == "y" or debugmode == False:
     # sp.call(["mv", "/home/pi/rpi_cnc_img/bCNC.desktop", "/home/pi/Desktop/"])
     h.cmdcall("ln -s /home/pi/bCNC/bCNC.desktop /home/pi/Desktop/bCNC")
 #    sp.call(["ln", "-s", "/home/pi/bCNC/bCNC.desktop", "/home/pi/Desktop/bCNC"])
 
 # Download TeamViewer
-yesno = raw_input("Install TeamViewer? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install TeamViewer? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("wget http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb")
 #    sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
@@ -117,6 +156,9 @@ sp.call(["sed", "-i", "s/secondboot\.py/everyboot\.py", "/etc/rc.local"])
 # f.close
 
 # reboot
-yesno = raw_input("Reboot? (y/n) ")
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Reboot? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo shutdown -r")

@@ -21,7 +21,8 @@ else:
 if yesno == "y":
     sp.call(["sudo", "usermod", "-a", "-G", "dialout", "pi"])
 
-# Enable PiScreenDrivers and configure calibration settings
+# Enable PiScreenDrivers and configure for console use
+# http://ozzmaker.com/enable-console-on-piscreen/
 # calibration steps come from http://ozzmaker.com/forums/topic/piscreen-raspberripi2-touchscreen-calibration/
 if debugmode == False:
     yesno = "y"
