@@ -34,7 +34,7 @@ if yesno == "y":
     sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11/", "/boot/cmdline.txt"])
 
     #sp.call(
-    sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])  # install X server utilities
+    #sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])  # install X server utilities
     #sp.call(["sudo", "sed", "-i", "/^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axes (?i)Swap*$ /s/^/#/", "/etc/X11/xinit/xinitrc"])
     #sp.call(["sudo", "sed", "-i", "/^DISPLAY=*xinput*(?i)Touchscreen*(?i)Evdev (?i)Axis (?i)Inversion*$ /s/^/#/", "/etc/X11/xinit/xinitrc"])
     #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
