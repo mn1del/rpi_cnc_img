@@ -102,13 +102,13 @@ else:
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
-    sp.call(["sudo", "touch", grbldir + "/examples/GRBLtoArduino/Makefile"]
+    sp.call(["sudo", "touch", grbldir + "/examples/GRBLtoArduino/Makefile"])
     sp.call(["sudo", "chmod", "777", grbldir + "/examples/GRBLtoArduino/Makefile"])
     sketch = open(grbldir + "/examples/GRBLtoArduino/Makefile","w")
-    sketch.write("ARDUINO_DIR = /usr/share/arduino")
-    sketch.write("BOARD_TAG = uno")
-    sketch.write("ARDUINO_PORT = /dev/ttyACM0")  # not sure if "*" works
-    sketch.write("ARDUINO_LIBS = include /usr/share/arduino/Arduino.mk")
+    sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
+    sketch.write("BOARD_TAG = uno\n")
+    sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")  # not sure if "*" works
+    sketch.write("ARDUINO_LIBS = include /usr/share/arduino/Arduino.mk\n")
     sketch.close()
 
 # upload GRBL to Arduino
