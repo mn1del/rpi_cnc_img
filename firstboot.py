@@ -43,14 +43,17 @@ if yesno == "y":
     #if os.path.isfile("etc/pointercal.xinput"):
         #h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
 
-# remove unnecessary packages
-# yesno = raw_input("Remove unnecessary packages? (y/n) ")
-# if yesno == "y" or debugmode == False:
-#    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common")
-    sp.call(["sudo", "aptitude", "-y", "remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
-
 # set call for secondboot.py
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /home/pi", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/secondboot_arduino.py", "/etc/rc.local"])
+
+# reboot
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Reboot? (y/n) ")
+if yesno == "y" or debugmode == False:
+    sp.call(["sudo", "shutdown", "-r"])
+
