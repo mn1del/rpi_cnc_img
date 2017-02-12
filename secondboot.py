@@ -12,7 +12,7 @@ import os
 import helpy as h
 
 
-debugmode = True
+debugmode = False
 
 
 # install tightvncserver
@@ -102,10 +102,12 @@ else:
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
+    sp.call(["sudo", "touch", grbldir + "/examples/GRBLtoArduino/Makefile"]
+    sp.call(["sudo", "chmod", "777", grbldir + "/examples/GRBLtoArduino/Makefile"])
     sketch = open(grbldir + "/examples/GRBLtoArduino/Makefile","w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino")
     sketch.write("BOARD_TAG = uno")
-    sketch.write("ARDUINO_PORT = /dev/ttyACM*")  # not sure if "*" works
+    sketch.write("ARDUINO_PORT = /dev/ttyACM0")  # not sure if "*" works
     sketch.write("ARDUINO_LIBS = include /usr/share/arduino/Arduino.mk")
     sketch.close()
 
@@ -115,12 +117,14 @@ if debugmode == False:
 else:
     yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("cd " + grbldir + "/examples")
-    h.cmdcall("sudo make")  # test that the sketch compiles
-    h.cmdcall("sudo make upload")  # upload to arduino
-    # ***** alternative way - seems better *************
-    # sp.call(["arduino", "--upload", grbldir + "/examples/GRBLtoArduino.ino", "--port", "/dev/ttyUSB*"])  # check port name
-    h.cmdcall("cd /home/pi")
+    grbldir = grbldir + "/examples/GRBLtoArduino"
+    with cd(grbldir):
+    #sp.call(["cd", grbldir])
+        h.cmdcall("sudo make")  # test that the sketch compiles
+        h.cmdcall("sudo make upload")  # upload to arduino
+        # ***** alternative way - seems better *************
+        # sp.call(["arduino", "--upload", grbldir + "/examples/GRBLtoArduino.ino", "--port", "/dev/ttyUSB*"])  # check port name
+        h.cmdcall("cd /home/pi")
 
 # clone bCNC
 if debugmode == False:
@@ -153,10 +157,6 @@ if yesno == "y" or debugmode == False:
 # set call for everyboot.py
 # replaces previous call for secondboot.py
 sp.call(["sudo", "sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"])
-#h.cmdcall("sed -i s/secondboot\.py/everyboot\.py /etc/rc.local")
-# f = open("/etc/rc.local","a")
-# f.write("sleep 10;python /home/pi/rpi_cnc_img/secondboot.py")
-# f.close
 
 # Set up X Windows for the piscreen
 sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])
@@ -165,13 +165,13 @@ sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
 # set call for everyboot.py
-# sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
 # set login to GUI autologin
 #auto login
 sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
 #auto startx
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo -l pi -c startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
 
 
