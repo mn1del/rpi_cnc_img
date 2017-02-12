@@ -28,7 +28,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install tightvncserver? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install","tightvncserver"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
 
 # upgrade packages
 if debugmode == False:
@@ -37,7 +37,7 @@ else:
     yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
     #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade"])
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-q", "safe-upgrade"])  
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "safe-upgrade"])  
 
 # install zip/unzip
 if debugmode == False:
@@ -45,7 +45,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install zip/unzip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "zip", "unzip"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "zip", "unzip"])
 
 # install xrdp
 if debugmode == False:
@@ -53,7 +53,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install xrdp? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install","xrdp"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install","xrdp"])
 
 # install pip
 if debugmode == False:
@@ -61,7 +61,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install pip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "python-pip"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python-pip"])
 
 # install pyserial
 if debugmode == False:
@@ -77,7 +77,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install python? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "python", "python-tk", "python-pmw", "python-imaging"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python", "python-tk", "python-pmw", "python-imaging"])
 
 # install arduino
 if debugmode == False:
@@ -85,8 +85,8 @@ if debugmode == False:
 else:
     yesno = raw_input("Install arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "arduino", "arduino-core", "arduino-mk"])
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "gcc-avr", "avr-libc", "avrdude"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "arduino", "arduino-core", "arduino-mk"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "gcc-avr", "avr-libc", "avrdude"])
 
 # install GRBL and configure Makefile (which is the mechnism by which it gets uploaded to arduinio
 # the actual uploading will be handled by another script because "cd'ing" into the directory is necessary
@@ -132,13 +132,8 @@ else:
 if yesno == "y" or debugmode == False:
     sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
 
-# set call for everyboot.py
-# replaces previous call for secondboot.py
-sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
-
 # Set up X Windows for the piscreen
-sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "x11-xserver-utils"])
+sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "x11-xserver-utils"])
 sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
 sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
@@ -149,11 +144,3 @@ sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:234
 #auto startx
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
-
-# reboot
-if debugmode == False:
-    yesno = "y"
-else:
-    yesno = raw_input("Reboot? (y/n) ")
-if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "shutdown", "-r"])

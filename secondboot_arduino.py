@@ -17,3 +17,15 @@ if yesno == "y" or debugmode == False:
     #h.cmdcall("sudo make")  # test that the sketch compiles
     sp.call(["sudo", "make", "upload"])  # upload to arduino
 
+# set call for everyboot.py
+s replaces previous call for secondboot.py
+sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
+
+# reboot
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Reboot? (y/n) ")
+if yesno == "y" or debugmode == False:
+    sp.call(["sudo", "shutdown", "-r"])
