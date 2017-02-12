@@ -87,6 +87,7 @@ else:
     yesno = raw_input("Install arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install arduino arduino-core arduino-mk -y")
+    h.cmdcall("sudo aptitude install gcc-avr avr-libc avrdude -y")
 #    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
 
 # install GRBL
@@ -108,7 +109,8 @@ if yesno == "y" or debugmode == False:
     sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
     sketch.write("BOARD_TAG = uno\n")
     sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")  # not sure if "*" works
-    sketch.write("ARDUINO_LIBS = include /usr/share/arduino/Arduino.mk\n")
+    sketch.write("ARDUINO_LIBS = grbl\n") 
+    sketch.write("include /usr/share/arduino/Arduino.mk\n")
     sketch.close()
 
 # upload GRBL to Arduino
