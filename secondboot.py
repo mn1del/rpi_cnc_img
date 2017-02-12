@@ -20,7 +20,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Remove unnecessary packages? (y/n) ")
     if yesno == "y" or debugmode == False:
-        sp.call(["sudo", "aptitude", "-y", "remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
+        sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
 
 # install tightvncserver
 if debugmode == False:
@@ -28,7 +28,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install tightvncserver? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install","tightvncserver","-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install","tightvncserver"])
 
 # upgrade packages
 if debugmode == False:
@@ -36,8 +36,8 @@ if debugmode == False:
 else:
     yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
-    #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade", "-y"])
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "safe-upgrade"])  
+    #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-q", "safe-upgrade"])  
 
 # install zip/unzip
 if debugmode == False:
@@ -45,7 +45,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install zip/unzip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install", "zip", "unzip", "-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "zip", "unzip"])
 
 # install xrdp
 if debugmode == False:
@@ -53,7 +53,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install xrdp? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install","xrdp","-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install","xrdp"])
 
 # install pip
 if debugmode == False:
@@ -61,7 +61,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install pip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install", "python-pip", "-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "python-pip"])
 
 # install pyserial
 if debugmode == False:
@@ -77,7 +77,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install python? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install", "python", "python-tk", "python-pmw", "python-imaging", "-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "python", "python-tk", "python-pmw", "python-imaging"])
 
 # install arduino
 if debugmode == False:
@@ -85,8 +85,8 @@ if debugmode == False:
 else:
     yesno = raw_input("Install arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
-    sp.call(["sudo", "aptitude", "install", "gcc-avr", "avr-libc", "avrdude", "-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "arduino", "arduino-core", "arduino-mk"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "gcc-avr", "avr-libc", "avrdude"])
 
 # install GRBL and configure Makefile (which is the mechnism by which it gets uploaded to arduinio
 # the actual uploading will be handled by another script because "cd'ing" into the directory is necessary
@@ -138,7 +138,7 @@ sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
 # Set up X Windows for the piscreen
-sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])
+sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "install", "x11-xserver-utils"])
 sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
 sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
