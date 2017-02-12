@@ -90,12 +90,8 @@ if yesno == "y" or debugmode == False:
     h.cmdcall("sudo aptitude install gcc-avr avr-libc avrdude -y")
 #    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
 
-# install GRBL
-# ****************** requires testing ****************************************
-# **** if we are sure of the arduino directory, we can just use that, ********
-# **** otherwise the sp.call(["locate"...]) and os.path.* functions   ********
-# **** are intended to find it. **********************************************
-# ****************************************************************************
+# install GRBL and configure Makefile (which is the mechnism by which it gets uploaded to arduinio
+# the actual uploading will be handled by another script because "cd'ing" into the directory is necessary
 if debugmode == False:
     yesno = "y"
 else:
@@ -108,25 +104,10 @@ if yesno == "y" or debugmode == False:
     sketch = open(grbldir + "/examples/GRBLtoArduino/Makefile","w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
     sketch.write("BOARD_TAG = uno\n")
-    sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")  # not sure if "*" works
-    sketch.write("ARDUINO_LIBS = grbl\n") 
+    sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")
+    sketch.write("ARDUINO_LIBS = grbl\n")
     sketch.write("include /usr/share/arduino/Arduino.mk\n")
     sketch.close()
-
-# upload GRBL to Arduino
-if debugmode == False:
-    yesno = "y"
-else:
-    yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
-if yesno == "y" or debugmode == False:
-    grbldir = grbldir + "/examples/GRBLtoArduino"
-    with cd(grbldir):
-    #sp.call(["cd", grbldir])
-        h.cmdcall("sudo make")  # test that the sketch compiles
-        h.cmdcall("sudo make upload")  # upload to arduino
-        # ***** alternative way - seems better *************
-        # sp.call(["arduino", "--upload", grbldir + "/examples/GRBLtoArduino.ino", "--port", "/dev/ttyUSB*"])  # check port name
-        h.cmdcall("cd /home/pi")
 
 # clone bCNC
 if debugmode == False:
@@ -158,7 +139,8 @@ if yesno == "y" or debugmode == False:
 
 # set call for everyboot.py
 # replaces previous call for secondboot.py
-sp.call(["sudo", "sed", "-i", "s/secondboot\.py/everyboot\.py/", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
 # Set up X Windows for the piscreen
 sp.call(["sudo", "aptitude", "-y", "install", "x11-xserver-utils"])
