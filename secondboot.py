@@ -97,7 +97,7 @@ else:
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
-   grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
+    grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
     sp.call(["sudo", "touch", grbldir])
     sp.call(["sudo", "chmod", "777", grbldir])
     sketch = open(grbldir,"w")
