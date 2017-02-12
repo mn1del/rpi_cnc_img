@@ -49,4 +49,7 @@ if yesno == "y":
 #    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common")
 
 # set call for secondboot.py
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /home/pi", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/i \python /home/pi/rpi_cnc_img/secondboot_arduino.py", "/etc/rc.local"])
