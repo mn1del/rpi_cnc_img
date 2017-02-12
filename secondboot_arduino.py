@@ -15,5 +15,5 @@ else:
     yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
     #h.cmdcall("sudo make")  # test that the sketch compiles
-    h.cmdcall("sudo make upload")  # upload to arduino
+    sp.call(["sudo", "make", "upload"])  # upload to arduino
 

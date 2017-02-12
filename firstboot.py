@@ -29,7 +29,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Enable Piscreen? (y/n) ")
 if yesno == "y":
-    sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=90", "/boot/config.txt"])
+    sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=270", "/boot/config.txt"])
     # for boot to CLI:
     sp.call(["cp", "/boot/cmdline.txt", "/home/pi/cmdline.txt"])   # backup cmdline.txt
     sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11/", "/boot/cmdline.txt"])
