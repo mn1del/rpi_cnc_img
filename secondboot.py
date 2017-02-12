@@ -12,8 +12,15 @@ import os
 import helpy as h
 
 
-debugmode = False
+debugmode = True
 
+# remove unnecessary packages
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Remove unnecessary packages? (y/n) ")
+    if yesno == "y" or debugmode == False:
+        sp.call(["sudo", "aptitude", "-y", "remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
 
 # install tightvncserver
 if debugmode == False:
@@ -21,19 +28,16 @@ if debugmode == False:
 else:
     yesno = raw_input("Install tightvncserver? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install tightvncserver -y")
-#    sp.call(["sudo", "aptitude", "install","tightvncserver","-y"])
+    sp.call(["sudo", "aptitude", "install","tightvncserver","-y"])
 
 # upgrade packages
-# perhaps one for second boot?
 if debugmode == False:
     yesno = "y"
 else:
     yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude safe-upgrade -y")
-#    sp.call(shellcmd.split())
-#   sp.call(["sudo", "aptitude", "safe-upgrade"])
+    #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade", "-y"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "safe-upgrade"])  
 
 # install zip/unzip
 if debugmode == False:
@@ -41,8 +45,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install zip/unzip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install zip unzip -y")
-#    sp.call(["sudo", "aptitude", "install", "zip", "unzip", "-y"])
+    sp.call(["sudo", "aptitude", "install", "zip", "unzip", "-y"])
 
 # install xrdp
 if debugmode == False:
@@ -50,8 +53,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install xrdp? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install xrdp -y")
-#    sp.call(["sudo", "aptitude", "install","xrdp","-y"])
+    sp.call(["sudo", "aptitude", "install","xrdp","-y"])
 
 # install pip
 if debugmode == False:
@@ -59,8 +61,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install pip? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install python-pip -y")
-#    sp.call(["sudo", "aptitude", "install", "python-pip", "-y"])
+    sp.call(["sudo", "aptitude", "install", "python-pip", "-y"])
 
 # install pyserial
 if debugmode == False:
@@ -68,8 +69,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install pyserial? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo pip install pyserial --upgrade")
-#    sp.call(["sudo", "pip", "install", "pyserial", "--upgrade", "-y"])
+    sp.call(["sudo", "pip", "install", "pyserial", "--upgrade"])
 
 # install python
 if debugmode == False:
@@ -77,8 +77,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install python? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install python python-tk python-pmw python-imaging -y")
-#    sp.call(["sudo", "aptitude", "install", "python", "python-tk", "python-pmw", "python-imaging", "-y"])
+    sp.call(["sudo", "aptitude", "install", "python", "python-tk", "python-pmw", "python-imaging", "-y"])
 
 # install arduino
 if debugmode == False:
@@ -86,9 +85,8 @@ if debugmode == False:
 else:
     yesno = raw_input("Install arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo aptitude install arduino arduino-core arduino-mk -y")
-    h.cmdcall("sudo aptitude install gcc-avr avr-libc avrdude -y")
-#    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
+    sp.call(["sudo", "aptitude", "install", "arduino", "arduino-core", "arduino-mk", "-y"])
+    sp.call(["sudo", "aptitude", "install", "gcc-avr", "avr-libc", "avrdude", "-y"])
 
 # install GRBL and configure Makefile (which is the mechnism by which it gets uploaded to arduinio
 # the actual uploading will be handled by another script because "cd'ing" into the directory is necessary
@@ -99,9 +97,10 @@ else:
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
-    sp.call(["sudo", "touch", grbldir + "/examples/GRBLtoArduino/Makefile"])
-    sp.call(["sudo", "chmod", "777", grbldir + "/examples/GRBLtoArduino/Makefile"])
-    sketch = open(grbldir + "/examples/GRBLtoArduino/Makefile","w")
+   grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
+    sp.call(["sudo", "touch", grbldir])
+    sp.call(["sudo", "chmod", "777", grbldir])
+    sketch = open(grbldir,"w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
     sketch.write("BOARD_TAG = uno\n")
     sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")
@@ -115,8 +114,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Clone bCNC? (yes/no)")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo git clone https://github.com/vlachoudis/bCNC.git")
-#    sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"])
+    sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"])
 
 # Create bCNC Desktop Shortcut 
 if debugmode == False:
@@ -124,9 +122,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Create bCNC Desktop Shortcut? (y/n) ")
 if yesno == "y" or debugmode == False:
-    # sp.call(["mv", "/home/pi/rpi_cnc_img/bCNC.desktop", "/home/pi/Desktop/"])
-    h.cmdcall("ln -s /home/pi/bCNC/bCNC.desktop /home/pi/Desktop/bCNC")
-#    sp.call(["ln", "-s", "/home/pi/bCNC/bCNC.desktop", "/home/pi/Desktop/bCNC"])
+    sp.call(["ln", "-s", "/home/pi/bCNC/bCNC.desktop", "/home/pi/Desktop/bCNC"])
 
 # Download TeamViewer
 if debugmode == False:
@@ -134,8 +130,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install TeamViewer? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("wget http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb")
-#    sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
+    sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
 
 # set call for everyboot.py
 # replaces previous call for secondboot.py
@@ -148,9 +143,6 @@ sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsessio
 sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
 sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"])
 
-# set call for everyboot.py
-#sp.call(["sudo", "sed", "-i", "$ a\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
-
 # set login to GUI autologin
 #auto login
 sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
@@ -158,13 +150,10 @@ sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:234
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
 
-
 # reboot
 if debugmode == False:
     yesno = "y"
 else:
     yesno = raw_input("Reboot? (y/n) ")
 if yesno == "y" or debugmode == False:
-    h.cmdcall("sudo shutdown -r")
-
-
+    sp.call(["sudo", "shutdown", "-r"])

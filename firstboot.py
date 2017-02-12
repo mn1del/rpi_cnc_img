@@ -47,6 +47,7 @@ if yesno == "y":
 # yesno = raw_input("Remove unnecessary packages? (y/n) ")
 # if yesno == "y" or debugmode == False:
 #    h.cmdcall("sudo aptitude -y remove wolfram-engine penguinspuzzle scratch dillo squeak-vm squeak-plugins-scratch sonic-pi idle idle3 netsurf-gtk netsurf-common")
+    sp.call(["sudo", "aptitude", "-y", "remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
 
 # set call for secondboot.py
 sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /home/pi", "/etc/rc.local"])
