@@ -113,6 +113,23 @@ if yesno == "y" or debugmode == False:
     #sketch.write("include /usr/share/arduino/Arduino.mk\n")
     sketch.close()
 
+# upload GRBL to Arduino
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
+if yesno == "y" or debugmode == False:
+    #sp.call(["sudo", "make"], cwd="")  # test that the sketch compiles
+    sp.call(["sudo", "make", "upload"], cwd="/usr/share/arduino/libraries/grbl/examples/GRBLtoArduino")  # upload to arduino
+
+# set call for everyboot.py
+# replaces previous call for secondboot.py
+#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\\/home\/pi\/bCNC", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
+
 # clone bCNC
 if debugmode == False:
     yesno = "y"
@@ -180,3 +197,11 @@ if yesno == "y" or debugmode == False:
     #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
     # EDIT: deleted, as already called in firstbooy.py
     #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
+    
+# reboot
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Reboot? (y/n) ")
+if yesno == "y" or debugmode == False:
+    sp.call(["sudo", "shutdown", "-r"])
