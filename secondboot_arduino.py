@@ -22,10 +22,10 @@ if yesno == "y" or debugmode == False:
 # set call for everyboot.py
 # replaces previous call for secondboot.py
 #sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \\/home\/pi\/bCNC\/bCNC"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\\/home\/pi\/bCNC"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
 
 # reboot
 if debugmode == False:
