@@ -137,20 +137,45 @@ else:
 if yesno == "y" or debugmode == False:
     sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
 
-# Set up X Windows for the piscreen
-sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "x11-xserver-utils"])
-#turn off screenssaver with disable.sh
-sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
-sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
-################################ backslashes needed?##########################################################
-sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
-################################ backslashes needed?##########################################################
-
-# set login to GUI autologin
-#auto login
-sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
-#auto startx
-sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
-#extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
-# EDIT: deleted, as already called in firstbooy.py
-#sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
+# install touchscreen device controller setting utility
+if debugmode == False:
+    yesno = "y"
+else:
+    yesno = raw_input("Install X utilities? (y/n) ")
+if yesno == "y" or debugmode == False:   
+    # Install utitilies need for configuring and calibrating X for the piscreen
+    # see http://ozzmaker.com/enable-x-windows-on-piscreen/
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", 
+             "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  
+             "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
+    #download and install xinput calibrator
+    sp.call(["git", "clone", "https://github.com/tias/xinput_calibrator"])
+    sp.call(["./autogen.sh"], cwd="xinput_calibrator")
+    sp.call(["make"], cwd="xinput_calibrator")
+    sp.call(["sudo", "make", "install"], cwd="xinput_calibrator")
+    #download and setup the calibration script
+    sp.call(["wget", "http://ozzmaker.com/piscreen/xinput_calibrator_pointercal.sh"])
+    sp.call(["sudo", "cp", "/home/pi/xinput_calibrator_pointercal.sh", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
+    sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
+    sp.call(["sudo", "sed", "-i", "$ a\sudo \/bin\/sh \/etc\/X11\/Xsession\.d\/xinput_calibrator_pointercal\.sh", "/home/pi/.config/lxsession/LXDE-pi/autostart"])  #auto load calibration script
+    
+    # Flip x-axis direction for touchscreen to match flipped display orientation
+    # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
+    sp.call(["sudo", "sed", "-i", 
+             "/*/etc/X11/Xsession/i \DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", #regex
+             "/etc/X11/xinit/xinitrc"])
+    
+    #turn off screenssaver with disable.sh
+     sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
+    sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
+    ################################ backslashes needed?##########################################################
+    sp.call(["sudo", "sed", "-i", "$ a\/etc\/X11\/Xsession.d\/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
+    ################################ backslashes needed?##########################################################
+    # set login to GUI autologin
+    #auto login
+    sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
+    #auto startx
+    sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
+    #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
+    # EDIT: deleted, as already called in firstbooy.py
+    #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
