@@ -157,7 +157,7 @@ if yesno == "y" or debugmode == False:
     sp.call(["wget", "http://ozzmaker.com/piscreen/xinput_calibrator_pointercal.sh"])
     sp.call(["sudo", "cp", "/home/pi/xinput_calibrator_pointercal.sh", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
     sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
-    sp.call(["sudo", "sed", "-i", "$ a\sudo \/bin\/sh \/etc\/X11\/Xsession\.d\/xinput_calibrator_pointercal\.sh", "/home/pi/.config/lxsession/LXDE-pi/autostart"])  #auto load calibration script
+    sp.call(["sudo", "sed", "-i", "$ a\sudo /bin/sh /etc/X11/Xsession.d/xinput_calibrator_pointercal.sh", "/home/pi/.config/lxsession/LXDE-pi/autostart"])  #auto load calibration script
     
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
@@ -170,7 +170,7 @@ if yesno == "y" or debugmode == False:
      sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
     sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
     ################################ backslashes needed?##########################################################
-    sp.call(["sudo", "sed", "-i", "$ a\/etc\/X11\/Xsession\.d\/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
+    sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
     ################################ backslashes needed?##########################################################
     # set login to GUI autologin
     #auto login
