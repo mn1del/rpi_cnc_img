@@ -101,11 +101,11 @@ if yesno == "y" or debugmode == False:
     sp.call(["sudo", "touch", grbldir])
     sp.call(["sudo", "chmod", "777", grbldir])
     sketch = open(grbldir,"w")
-    sketch.write("ARDUINO_DIR = /usr/share/arduino\n
-                    BOARD_TAG = uno\n
-                    ARDUINO_PORT = /dev/ttyACM0\n
-                    ARDUINO_LIBS = grbl\n
-                    include /usr/share/arduino/Arduino.mk\n")
+    sketch.write("ARDUINO_DIR = /usr/share/arduino\n"
+                    "BOARD_TAG = uno\n"
+                    "ARDUINO_PORT = /dev/ttyACM0\n"
+                    "ARDUINO_LIBS = grbl\n"
+                    "include /usr/share/arduino/Arduino.mk")
     #sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
     #sketch.write("BOARD_TAG = uno\n")
     #sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")
