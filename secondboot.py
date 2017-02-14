@@ -145,9 +145,7 @@ else:
 if yesno == "y" or debugmode == False:   
     # Install utitilies need for configuring and calibrating X for the piscreen
     # see http://ozzmaker.com/enable-x-windows-on-piscreen/
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", 
-             "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  
-             "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""", "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
     #download and install xinput calibrator
     sp.call(["git", "clone", "https://github.com/tias/xinput_calibrator"])
     sp.call(["./autogen.sh"], cwd="xinput_calibrator")
@@ -162,9 +160,7 @@ if yesno == "y" or debugmode == False:
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
-    sp.call(["sudo", "sed", "-i", 
-             "/*\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", #regex
-             "/etc/X11/xinit/xinitrc"])  # file
+    sp.call(["sudo", "sed", "-i", "/\. \/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 0 1", "/etc/X11/xinit/xinitrc"])  # file
     
     #turn off screenssaver with disable.sh
      sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
