@@ -28,7 +28,7 @@ if debugmode == False:
 else:
     yesno = raw_input("Install tightvncserver? (y/n) ")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::='--force-confdef'", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
 
 # upgrade packages
 if debugmode == False:
@@ -37,7 +37,7 @@ else:
     yesno = raw_input("Upgrade packages? (y/n) ")
 if yesno == "y" or debugmode == False:
     #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade"])
-    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "safe-upgrade"])  
+    sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "safe-upgrade"])  
 
 # install zip/unzip
 if debugmode == False:
@@ -163,20 +163,20 @@ if yesno == "y" or debugmode == False:
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
     sp.call(["sudo", "sed", "-i", 
-             "/*\/etc\/X11\/Xsession/i \DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", #regex
+             "/*\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", #regex
              "/etc/X11/xinit/xinitrc"])  # file
     
     #turn off screenssaver with disable.sh
      sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
     sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
     ################################ backslashes needed?##########################################################
-    sp.call(["sudo", "sed", "-i", "$ a\/etc\/X11\/Xsession.d\/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
+    sp.call(["sudo", "sed", "-i", "$ a\/etc\/X11\/Xsession\.d\/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
     ################################ backslashes needed?##########################################################
     # set login to GUI autologin
     #auto login
     sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
     #auto startx
-    sp.call(["sudo", "sed", "-i", "/^exit 0/i \sudo startx", "/etc/rc.local"])
+    sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
     #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
     # EDIT: deleted, as already called in firstbooy.py
     #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
