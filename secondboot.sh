@@ -22,7 +22,10 @@ sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git /usr/share/
 wget http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb
 
 # create grbl Makefile
+#************************************ https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=151454
+# 
 # check this: https://hallard.me/enable-serial-port-on-raspberry-pi/ ****************************************
+#************************************* https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README
 # creates in home directory and then moves to target location
 # to get around sudo problems with command piping etc
 touch Makefile
