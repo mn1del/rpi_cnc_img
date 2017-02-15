@@ -37,6 +37,7 @@ sudo mv Makefile /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino/Makefi
 # upload to Arduino
 cd /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino
 sudo make upload
+cd /home/pi
 
 # downoad/install xinput calibrator (for x windows on piscreen)
 git clone https://github.com/tias/xinput_calibrator
