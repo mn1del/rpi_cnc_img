@@ -45,7 +45,7 @@ if yesno == "y":
 
 # set call for secondboot.py
 #sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /home/pi", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot.py", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot_.py", "/etc/rc.local"])
 #the following line has been replaced by passing cwd=""
 #sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino", "/etc/rc.local"])
 sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/secondboot_arduino.py", "/etc/rc.local"])
