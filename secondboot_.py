@@ -9,7 +9,7 @@
 
 import subprocess as sp
 import os
-import helpy as h
+#import helpy as h
 
 
 debugmode = False
@@ -95,24 +95,17 @@ if debugmode == False:
 else:
     yesno = raw_input("Install GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
-    grbldir = "/usr/share/arduino/libraries"
-    #h.cmdcall("sudo git clone https://github.com/Protoneer/GRBL-Arduino-Library.git " + grbldir)  # clone into specified directory
-    sp.call("sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir)
-    sp.call("sudo", "mv", grbldir + "GRBL-Arduinio-Library", grbldir + "grbl")  # rename directory to "grbl"
-    grbldir = grbldir + "/grbl/examples/GRBLtoArduino/Makefile"
+    grbldir = "/usr/share/arduino/libraries/grbl"
+    sp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])
+    grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
     sp.call(["sudo", "touch", grbldir])
     sp.call(["sudo", "chmod", "777", grbldir])
     sketch = open(grbldir,"w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino\n"
                     "BOARD_TAG = uno\n"
-                    "ARDUINO_PORT = /dev/ttyACM0\n"
+                    "ARDUINO_PORT = /dev/ttyACM*\n"
                     "ARDUINO_LIBS = grbl\n"
                     "include /usr/share/arduino/Arduino.mk")
-    #sketch.write("ARDUINO_DIR = /usr/share/arduino\n")
-    #sketch.write("BOARD_TAG = uno\n")
-    #sketch.write("ARDUINO_PORT = /dev/ttyACM0\n")
-    #sketch.write("ARDUINO_LIBS = grbl\n")
-    #sketch.write("include /usr/share/arduino/Arduino.mk\n")
     sketch.close()
 
 # upload GRBL to Arduino
@@ -138,7 +131,8 @@ if debugmode == False:
 else:
     yesno = raw_input("Clone bCNC? (yes/no)")
 if yesno == "y" or debugmode == False:
-    sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"])
+    sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"], cwd="/home/pi")
+    sp.call(["sudo", "chmod", "111", "/home/pi/bCNC/bCNC"])
 
 # Create bCNC Desktop Shortcut 
 if debugmode == False:

@@ -6,7 +6,7 @@
 
 import subprocess as sp
 import os
-import helpy as h
+#import helpy as h
 
 debugmode = False  # if True, then requires a user prompt for every action
 
@@ -48,7 +48,7 @@ if yesno == "y":
 sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot_.py", "/etc/rc.local"])
 #the following line has been replaced by passing cwd=""
 #sp.call(["sudo", "sed", "-i", "/^exit 0/i \cd /usr/share/arduino/libraries/grbl/examples/GRBLtoArduino", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/secondboot_arduino.py", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/secondboot_arduino.py", "/etc/rc.local"])
 
 # reboot
 if debugmode == False:
