@@ -93,7 +93,7 @@ if yesno == "y" or debugmode == False:
 if debugmode == False:
     yesno = "y"
 else:
-    yesno = raw_input("Install GRBL? (y/n) ")
+    yesno = raw_input("Clone GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     sp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])
@@ -116,14 +116,6 @@ else:
 if yesno == "y" or debugmode == False:
     #sp.call(["sudo", "make"], cwd="")  # test that the sketch compiles
     sp.call(["sudo", "make", "upload"], cwd="/usr/share/arduino/libraries/grbl/examples/GRBLtoArduino")  # upload to arduino
-
-# set call for everyboot.py
-# replaces previous call for secondboot.py
-#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\\/home\/pi\/bCNC", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
 
 # clone bCNC
 if debugmode == False:
@@ -189,11 +181,19 @@ if yesno == "y" or debugmode == False:
     #auto login
     sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
     #auto startx
-    sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
     #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
     # EDIT: deleted, as already called in firstbooy.py
     #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
     
+# set call for everyboot.py
+# replaces previous call for secondboot.py
+#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
+sp.call(["sudo", "sed", "-i", "1,$ s/secondboot_\.py/everyboot.py/g", "/etc/rc.local"])  # set everyboot.py
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
+
 # reboot
 if debugmode == False:
     yesno = "y"
