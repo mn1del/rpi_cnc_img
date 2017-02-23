@@ -167,9 +167,7 @@ if yesno == "y" or debugmode == False:
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
-    sp.call(["sudo", "sed", "-i", 
-             "/*\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", #regex
-             "/etc/X11/xinit/xinitrc"])  # file
+    sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", "/etc/X11/xinit/xinitrc"])  # file
     
     #turn off screenssaver with disable.sh
     sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
@@ -191,8 +189,8 @@ if yesno == "y" or debugmode == False:
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
 sp.call(["sudo", "sed", "-i", "1,$ s/secondboot_\.py/everyboot.py/g", "/etc/rc.local"])  # set everyboot.py
 sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
 
 # reboot
 if debugmode == False:
