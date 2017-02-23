@@ -12,7 +12,7 @@ import os
 #import helpy as h
 
 
-debugmode = False
+debugmode = True
 
 # remove unnecessary packages
 if debugmode == False:
