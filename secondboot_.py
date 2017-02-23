@@ -172,7 +172,7 @@ if yesno == "y" or debugmode == False:
              "/etc/X11/xinit/xinitrc"])  # file
     
     #turn off screenssaver with disable.sh
-     sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
+    sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
     sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
     ################################ backslashes needed?##########################################################
     sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
