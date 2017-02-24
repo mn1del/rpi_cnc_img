@@ -62,7 +62,7 @@ if yesno == "y":
     sp.call(["sudo", "xset", "-dpms"])
     sp.call(["sudo", "xset", "s", "noblank"])
     # disable screen balnking permanently (uncomment to effect this)
-    # sp.call(["sudo", "sed", "-i", "/\[SeatDefaults\]/ a\xserver-command=X -s 0 -dpms", "/etc/lightdm/lightdm.conf"])
+    # sp.call(["sudo", "sed", "-i", "/[sS]eat*[dD]efaults/ a\xserver-command=X -s 0 -dpms", "/etc/lightdm/lightdm.conf"])
 
 # set call for secondboot.py
 log = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
