@@ -58,10 +58,12 @@ if yesno == "y":
     bootlog.write("\n")
 
     # disable screen blanking (just once)
-    sp.call(["sudo", "xset", "s", "off"])
-    sp.call(["sudo", "xset", "-dpms"])
-    sp.call(["sudo", "xset", "s", "noblank"])
+    #sp.call(["sudo", "xset", "s", "off"])
+    #sp.call(["sudo", "xset", "-dpms"])
+    #sp.call(["sudo", "xset", "s", "noblank"])
     # disable screen balnking permanently (uncomment to effect this)
+    sp.call(["sudo", "sed", "-i", "s/BLANK_TIME=[0-9]{1,2}/BLANK_TIME=0"])
+    #alternative method found here http://www.geeks3d.com/hacklab/20160108/how-to-disable-the-blank-screen-on-raspberry-pi-raspbian/
     # sp.call(["sudo", "sed", "-i", "/[sS]eat*[dD]efaults/ a\xserver-command=X -s 0 -dpms", "/etc/lightdm/lightdm.conf"])
 
 # set call for secondboot.py
