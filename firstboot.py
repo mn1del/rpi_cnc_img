@@ -23,7 +23,7 @@ else:
 if yesno == "y":
     log = sp.call(["sudo", "usermod", "-a", "-G", "dialout", "pi"])
     bootlog.write('\nlog = sp.call(["sudo", "usermod", "-a", "-G", "dialout", "pi"])')
-    bootlog.write(log)
+    bootlog.write(str(log))
     bootlog.write("\n")
 
 # Enable PiScreenDrivers and configure for console use
@@ -37,24 +37,24 @@ if yesno == "y":
     # enable PiScreen
     log = sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=270", "/boot/config.txt"])
     bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "$ a\dtoverlay=piscreen,speed=16000000,rotate=270", "/boot/config.txt"])')
-    bootlog.write(log)
+    bootlog.write(str(log))
     bootlog.write("\n")
 
     #FOR BOOT TO COMMAND LINE
     log = sp.call(["cp", "/boot/cmdline.txt", "/home/pi/cmdline.txt"])   # backup cmdline.txt
     bootlog.write('\nlog = sp.call(["cp", "/boot/cmdline.txt", "/home/pi/cmdline.txt"])   # backup cmdline.txt')
-    bootlog.write(log)
+    bootlog.write(str(log))
     bootlog.write("\n")
     # configure correct orientation
     log = sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11/", "/boot/cmdline.txt"])
     bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "1 s/$/ fbcon=map:10 fbcon=rotate:2 fbcon=font:ProFont6x11/", "/boot/cmdline.txt"])')
-    bootlog.write(log)
+    bootlog.write(str(log))
     bootlog.write("\n")
 
     # output display to GPIO (PiScreen)
     log = sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
     bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])')
-    bootlog.write(log)
+    bootlog.write(str(log))
     bootlog.write("\n")
 
     # disable screen blanking (just once)
@@ -69,7 +69,7 @@ if yesno == "y":
 # set call for secondboot.py
 log = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])')
-bootlog.write(log)
+bootlog.write(str(log))
 bootlog.write("\n")
 bootlog.close()
 
