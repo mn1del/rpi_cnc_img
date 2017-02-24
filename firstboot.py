@@ -44,7 +44,7 @@ if yesno == "y":
         #h.cmdcall("sudo mv etc/pointercal.xinput etc/pointercal.xinput_copy")
 
 # set call for secondboot.py
-##############################################################sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot_.py", "/etc/rc.local"])
+sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
 
 # reboot
 if debugmode == False:
