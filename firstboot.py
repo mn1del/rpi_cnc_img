@@ -71,6 +71,7 @@ log = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cn
 bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])')
 bootlog.write(log)
 bootlog.write("\n")
+bootlog.close()
 
 # reboot
 if debugmode == False:
