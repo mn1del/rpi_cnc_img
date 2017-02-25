@@ -67,8 +67,8 @@ if yesno == "y":
     # sp.call(["sudo", "sed", "-i", "/[sS]eat*[dD]efaults/ a\xserver-command=X -s 0 -dpms", "/etc/lightdm/lightdm.conf"])
 
 # set call for secondboot.py
-log = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])
-bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"])')
+log = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot_.py", "/etc/rc.local"])
+bootlog.write('\nlog = sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sleep 10;python /home/pi/rpi_cnc_img/secondboot_.py", "/etc/rc.local"])')
 bootlog.write(str(log))
 bootlog.write("\n")
 bootlog.close()
