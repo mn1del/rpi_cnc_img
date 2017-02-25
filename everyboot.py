@@ -6,4 +6,5 @@
 import subprocess as sp
 
 # launch GUI
+sp.call(["git", "pull"], cwd="/home/pi/rpi_cnc_img")
 sp.call(["startx"])
