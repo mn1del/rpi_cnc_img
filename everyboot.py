@@ -6,4 +6,4 @@
 import subprocess as sp
 
 # launch GUI
-sp.call(["sudo", "startx"])
+sp.call(["startx"])
