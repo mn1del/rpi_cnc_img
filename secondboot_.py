@@ -285,7 +285,7 @@ if yesno == "y" or debugmode == False:
 # set call for everyboot.py
 # replaces previous call for secondboot.py
 # everyboot.py will have instructions like startx etc, not rc.local
-log = #sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
 bootlog.write('\n#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])')
 bootlog.write('\n' + str(log))
 bootlog.write('\n')
