@@ -13,7 +13,7 @@ import os
 
 
 debugmode = False
-bootlog = open("/home/pi/bootlog.txt", "w")  # creat log file to track boot script progress
+bootlog = open("/home/pi/bootlog.txt", "a")  # creat log file to track boot script progress
 
 # remove unnecessary packages
 if debugmode == False:
@@ -297,6 +297,8 @@ bootlog.write('\n')
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
+
+bootlog.close()
 
 # reboot
 if debugmode == False:
