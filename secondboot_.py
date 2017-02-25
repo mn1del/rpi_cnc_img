@@ -23,7 +23,7 @@ else:
     if yesno == "y" or debugmode == False:
         log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""","remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])
         bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""","remove", "wolfram-engine", "penguinspuzzle", "dillo", "squeak-vm", "squeak-plugins-scratch", "sonic-pi", "netsurf-gtk", "netsurf-common"])')
-        bootlog.write(str(log))
+        bootlog.write('\n' + str(log))
         bootlog.write('\n')
 
 # install tightvncserver
@@ -34,7 +34,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::='--force-confdef'", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=--force-confdef", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # upgrade packages
@@ -46,7 +46,7 @@ if yesno == "y" or debugmode == False:
     #sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "safe-upgrade"])
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "safe-upgrade"])  
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "safe-upgrade"])  ')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install zip/unzip
@@ -57,7 +57,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "zip", "unzip"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "zip", "unzip"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install xrdp
@@ -68,7 +68,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install","xrdp"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install","xrdp"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install pip
@@ -79,7 +79,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python-pip"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python-pip"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install pyserial
@@ -90,7 +90,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "pip", "install", "pyserial", "--upgrade"])
     bootlog.write('\nsp.call(["sudo", "pip", "install", "pyserial", "--upgrade"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install python
@@ -101,7 +101,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python", "python-tk", "python-pmw", "python-imaging"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "python", "python-tk", "python-pmw", "python-imaging"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install arduino
@@ -112,11 +112,11 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "arduino", "arduino-core", "arduino-mk"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "arduino", "arduino-core", "arduino-mk"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "gcc-avr", "avr-libc", "avrdude"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  "install", "gcc-avr", "avr-libc", "avrdude"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install GRBL and configure Makefile (which is the mechnism by which it gets uploaded to arduinio
@@ -129,16 +129,16 @@ if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
     log = sp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])
     bootlog.write('\nsp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
     log = sp.call(["sudo", "touch", grbldir])
     bootlog.write('\nsp.call(["sudo", "touch", grbldir])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "chmod", "777", grbldir])
     bootlog.write('\nsp.call(["sudo", "chmod", "777", grbldir])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     sketch = open(grbldir,"w")
     sketch.write("ARDUINO_DIR = /usr/share/arduino\n"
@@ -157,7 +157,7 @@ if yesno == "y" or debugmode == False:
     #sp.call(["sudo", "make"], cwd="")  # test that the sketch compiles
     log = sp.call(["sudo", "make", "upload"], cwd="/usr/share/arduino/libraries/grbl/examples/GRBLtoArduino")  # upload to arduino
     bootlog.write('\nsp.call(["sudo", "make", "upload"], cwd="/usr/share/arduino/libraries/grbl/examples/GRBLtoArduino")  # upload to arduino')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # clone bCNC
@@ -168,11 +168,11 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"], cwd="/home/pi")
     bootlog.write('\nsp.call(["sudo", "git", "clone","https://github.com/vlachoudis/bCNC.git"], cwd="/home/pi")')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "chmod", "111", "/home/pi/bCNC/bCNC"])
     bootlog.write('\nsp.call(["sudo", "chmod", "111", "/home/pi/bCNC/bCNC"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # Create bCNC Desktop Shortcut 
@@ -183,7 +183,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["ln", "-s", "/home/pi/bCNC/bCNC", "/home/pi/Desktop/bCNC"])
     bootlog.write('\nsp.call(["ln", "-s", "/home/pi/bCNC/bCNC", "/home/pi/Desktop/bCNC"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # Download TeamViewer
@@ -194,7 +194,7 @@ else:
 if yesno == "y" or debugmode == False:
     log = sp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])
     bootlog.write('\nsp.call(["wget", "http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
 # install touchscreen device controller setting utility
@@ -206,44 +206,44 @@ if yesno == "y" or debugmode == False:
     # Install utitilies need for configuring and calibrating X for the piscreen
     # see http://ozzmaker.com/enable-x-windows-on-piscreen/
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", 
+             "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""", "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
     bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", ')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
-             "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  
-             "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
+
     #download and install xinput calibrator
     log = sp.call(["git", "clone", "https://github.com/tias/xinput_calibrator"])
     bootlog.write('\nsp.call(["git", "clone", "https://github.com/tias/xinput_calibrator"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["./autogen.sh"], cwd="xinput_calibrator")
     bootlog.write('\nsp.call(["./autogen.sh"], cwd="xinput_calibrator")')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["make"], cwd="xinput_calibrator")
     bootlog.write('\nsp.call(["make"], cwd="xinput_calibrator")')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "make", "install"], cwd="xinput_calibrator")
     bootlog.write('\nsp.call(["sudo", "make", "install"], cwd="xinput_calibrator")')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     #download and setup the calibration script
     log = sp.call(["wget", "http://ozzmaker.com/piscreen/xinput_calibrator_pointercal.sh"])
     bootlog.write('\nsp.call(["wget", "http://ozzmaker.com/piscreen/xinput_calibrator_pointercal.sh"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "cp", "/home/pi/xinput_calibrator_pointercal.sh", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
     bootlog.write('\nsp.call(["sudo", "cp", "/home/pi/xinput_calibrator_pointercal.sh", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])
     bootlog.write('\nsp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/xinput_calibrator_pointercal.sh"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "sed", "-i", "$ a\sudo /bin/sh /etc/X11/Xsession.d/xinput_calibrator_pointercal.sh", "/home/pi/.config/lxsession/LXDE-pi/autostart"])  #auto load calibration script
     bootlog.write('\nsp.call(["sudo", "sed", "-i", "$ a\sudo /bin/sh /etc/X11/Xsession.d/xinput_calibrator_pointercal.sh", "/home/pi/.config/lxsession/LXDE-pi/autostart"])  #auto load calibration script')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
     # Flip x-axis direction for touchscreen to match flipped display orientation
@@ -251,35 +251,35 @@ if yesno == "y" or debugmode == False:
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
     log = sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", "/etc/X11/xinit/xinitrc"])  # file
     bootlog.write('\nsp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "ADS7846 Touchscreen" "Evdev Axis Inversion" 1 0", "/etc/X11/xinit/xinitrc"])  # file')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
     #turn off screenssaver with disable.sh
     log = sp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])
     bootlog.write('\nsp.call(["sudo", "mv", "/home/pi/rpi_cnc_img/disableblank.sh", "/etc/X11/Xsession.d/"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     log = sp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])
     bootlog.write('\nsp.call(["sudo", "chmod", "+x", "/etc/X11/Xsession.d/disableblank.sh"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     ################################ backslashes needed?##########################################################
     log = sp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???
     bootlog.write('\nsp.call(["sudo", "sed", "-i", "$ a\/etc/X11/Xsession.d/disableblank.sh", "/etc/xdg/lxsession/LXDE-pi/autostart"]) # backslashes needed???')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     ################################ backslashes needed?##########################################################
     # set login to GUI autologin
     #auto login
     log = sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
     bootlog.write('\nsp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     #auto startx
     #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
     log = sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
     bootlog.write('\nsp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])')
-    bootlog.write(str(log))
+    bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
 # set call for everyboot.py
@@ -287,12 +287,12 @@ if yesno == "y" or debugmode == False:
 # everyboot.py will have instructions like startx etc, not rc.local
 log = #sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
 bootlog.write('\n#sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])')
-bootlog.write(str(log))
+bootlog.write('\n' + str(log))
 bootlog.write('\n')
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
 log = sp.call(["sudo", "sed", "-i", "1,$ s/secondboot_\.py/everyboot.py/g", "/etc/rc.local"])  # set everyboot.py
 bootlog.write('\nsp.call(["sudo", "sed", "-i", "1,$ s/secondboot_\.py/everyboot.py/g", "/etc/rc.local"])  # set everyboot.py')
-bootlog.write(str(log))
+bootlog.write('\n' + str(log))
 bootlog.write('\n')
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
