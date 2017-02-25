@@ -184,10 +184,11 @@ if yesno == "y" or debugmode == False:
     
 # set call for everyboot.py
 # replaces previous call for secondboot.py
+# everyboot.py will have instructions like startx etc, not rc.local
 #sp.call(["sudo", "sed", "-i", "/cd \/home\/pi/,/^exit 0/{//!d}", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo python /home/pi/rpi_cnc_img/everyboot.py", "/etc/rc.local"]) #check backslashes
 sp.call(["sudo", "sed", "-i", "1,$ s/secondboot_\.py/everyboot.py/g", "/etc/rc.local"])  # set everyboot.py
-sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
+#sp.call(["sudo", "sed", "-i", "/^exit 0/ i\sudo startx", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\/home/pi/bCNC", "/etc/rc.local"])
 #sp.call(["sudo", "sed", "-i", "/^exit 0/ i\chromium-browser --kiosk http://localhost:8080", "/etc/rc.local"])
 
