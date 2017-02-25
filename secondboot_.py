@@ -12,7 +12,7 @@ import os
 #import helpy as h
 
 
-debugmode = True
+debugmode = False
 
 # remove unnecessary packages
 if debugmode == False:
@@ -110,7 +110,7 @@ if yesno == "y" or debugmode == False:
 
 # upload GRBL to Arduino
 if debugmode == False:
-    yesno = "y"
+    yesno = "n"
 else:
     yesno = raw_input("Upload GRBL to Arduino? (y/n) ")
 if yesno == "y" or debugmode == False:
