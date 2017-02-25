@@ -206,9 +206,9 @@ if yesno == "y" or debugmode == False:
     # Install utitilies need for configuring and calibrating X for the piscreen
     # see http://ozzmaker.com/enable-x-windows-on-piscreen/
     log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", 
-        bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", ')
-        bootlog.write('\n' + str(log))
-        bootlog.write('\n')
+    bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", ')
+    bootlog.write('\n' + str(log))
+    bootlog.write('\n')
              "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""",  
              "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
     #download and install xinput calibrator
