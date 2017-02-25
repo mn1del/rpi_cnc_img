@@ -180,8 +180,7 @@ if yesno == "y" or debugmode == False:
     sp.call(["sudo", "sed", "-i", "s/1:12345:respawn:\/sbin\/getty 115200 tty1/1:2345:respawn:\/bin\/login -f pi tty1 <\/dev\/tty1 >\/dev\/tty1 2>&1/", "/etc/rc.local"])
     #auto startx
     #extra step for Jessie. From http://ozzmaker.com/piscreen-driver-install-instructions-2/
-    # EDIT: deleted, as already called in firstbooy.py
-    #sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
+    sp.call(["sudo", "sed", "-i", "s/\/dev\/fb0/\/dev\/fb1/", "/usr/share/X11/xorg.conf.d/99-fbturbo.conf"])
     
 # set call for everyboot.py
 # replaces previous call for secondboot.py
