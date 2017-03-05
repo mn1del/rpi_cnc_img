@@ -26,16 +26,16 @@ else:
         bootlog.write('\n' + str(log))
         bootlog.write('\n')
 
-# install tightvncserver
-if debugmode == False:
-    yesno = "y"
-else:
-    yesno = raw_input("Install tightvncserver? (y/n) ")
-if yesno == "y" or debugmode == False:
-    log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::='--force-confdef'", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
-    bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=--force-confdef", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])')
-    bootlog.write('\n' + str(log))
-    bootlog.write('\n')
+## install tightvncserver
+#if debugmode == False:
+#    yesno = "y"
+#else:
+#    yesno = raw_input("Install tightvncserver? (y/n) ")
+#if yesno == "y" or debugmode == False:
+#    log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::='--force-confdef'", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])
+#    bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=--force-confdef", "-o", "Dpkg::Options::=""--force-confold""",  "install","tightvncserver"])')
+#    bootlog.write('\n' + str(log))
+#    bootlog.write('\n')
 
 # upgrade packages
 if debugmode == False:
@@ -205,9 +205,8 @@ else:
 if yesno == "y" or debugmode == False:   
     # Install utitilies need for configuring and calibrating X for the piscreen
     # see http://ozzmaker.com/enable-x-windows-on-piscreen/
-    log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", 
-             "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""", "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
-    bootlog.write('\nsp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", ')
+    log = sp.call(["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""", "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"])
+    bootlog.write('["sudo", "DEBIAN_FRONTEND=noninteractive", "aptitude", "-y", "-q", "-o", "Dpkg::Options::=""--force-confdef""", "-o", "Dpkg::Options::=""--force-confold""", "install", "x11-xserver-utils", "xinput", "evtest", "libtool", "libx11-dev", "autoconf", "libxi-dev", "x11proto-input-dev"]')
     bootlog.write('\n' + str(log))
     bootlog.write('\n')
 
@@ -249,8 +248,8 @@ if yesno == "y" or debugmode == False:
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
-    log = sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'ADS7846 Touchscreen'" "'Evdev Axis Inversion'" 1 0", "/etc/X11/xinit/xinitrc"])  # file
-    bootlog.write('\nsp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "ADS7846 Touchscreen" "Evdev Axis Inversion" 1 0", "/etc/X11/xinit/xinitrc"])  # file')
+    log = sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 1 0", "/etc/X11/xinit/xinitrc"])  # file
+    bootlog.write('\nsp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'"ADS7846 Touchscreen"'" "'"Evdev Axis Inversion"'" 1 0", "/etc/X11/xinit/xinitrc"])  # file')
     bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
