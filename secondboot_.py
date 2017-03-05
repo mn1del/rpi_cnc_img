@@ -248,8 +248,8 @@ if yesno == "y" or debugmode == False:
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
-    log = sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 1 0", "/etc/X11/xinit/xinitrc"])  # file
-    bootlog.write('\nsp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'"ADS7846 Touchscreen"'" "'"Evdev Axis Inversion"'" 1 0", "/etc/X11/xinit/xinitrc"])  # file')
+    log = sp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 0 1", "/etc/X11/xinit/xinitrc"])  # file
+    bootlog.write('\nsp.call(["sudo", "sed", "-i", "/.\/etc\/X11\/Xsession/ i\DISPLAY=:0 xinput --set-prop "'"ADS7846 Touchscreen"'" "'"Evdev Axis Inversion"'" 0 1", "/etc/X11/xinit/xinitrc"])  # file')
     bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
