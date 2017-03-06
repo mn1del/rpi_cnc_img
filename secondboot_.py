@@ -245,6 +245,12 @@ if yesno == "y" or debugmode == False:
     bootlog.write('\n' + str(log))
     bootlog.write('\n')
     
+    # remove CLI touchscreen settings (because we'll be booting to GUI from now on)
+    log = sp.call(["sudo", "sed", "-i", "s/ fbcon.*$//", "/boot/cmdline.txt"])
+    bootlog.write('\nsp.call(["sudo", "sed", "-i", "s/ fbcon.*$//", "/boot/cmdline.txt"])')
+    bootlog.write('\n' + str(log))
+    bootlog.write('\n')
+    
     # Flip x-axis direction for touchscreen to match flipped display orientation
     # if finger movements result in back-to-front mouse movements, swap around the "1" and "0" at the end of the regex
     # see http://www.circuitbasics.com/raspberry-pi-touchscreen-calibration-screen-rotation/
