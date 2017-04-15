@@ -127,11 +127,15 @@ else:
     yesno = raw_input("Clone GRBL? (y/n) ")
 if yesno == "y" or debugmode == False:
     grbldir = "/usr/share/arduino/libraries/grbl"
-    log = sp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])
+    #log = sp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])
+    log = sp.call(["sudo", "git", "clone", "https://github.com/gnea/grbl.git", grbldir + "_gh"])
+    log = sp.call(["sudo", "mv", grbldir + "_gh/grbl", grbldir])
+    #bootlog.write('\nsp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])')
     bootlog.write('\nsp.call(["sudo", "git", "clone", "https://github.com/Protoneer/GRBL-Arduino-Library.git", grbldir])')
     bootlog.write('\n' + str(log))
     bootlog.write('\n')
-    grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
+    #grbldir = grbldir + "/examples/GRBLtoArduino/Makefile"
+    grbldir = grbldir + "/examples/grblUpload/Makefile"
     log = sp.call(["sudo", "touch", grbldir])
     bootlog.write('\nsp.call(["sudo", "touch", grbldir])')
     bootlog.write('\n' + str(log))
