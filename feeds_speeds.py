@@ -2,9 +2,8 @@
 # stores generic recommended min/max chiploads by material and bit diameter
 # Calculates RPM for given feed rate, and vice versa.
 
-
-from scipy.interpolate import InterpolateUnivariateSpline
-
+import numpy as np
+from scipy.interpolate import InterpolatedUnivariateSpline
 
 # list of spindle diameters
 diams = [3.175, 6.35, 9.525, 12.7]
@@ -50,7 +49,12 @@ aluminium = {
         "min" : {"diam":diams, "chipload":[0.0762, 0.127, 0.1524, 0.2032]},
         "max" : {"diam":diams, "chipload":[0.127, 0.1778, 0.2032, 0.254]}}
 
-def rpm_max(cutterDiam=6, numFlutes=2 material=hardwood, feedRate=750):
+def rpm_max(cutterDiam=6, numFlutes=2, material=hardwood, feedRate=750):
     s = InterpolatedUnivariateSpline(material["min"]["diam"], material["min"]["chipload"],k=1)
+    chipload = s(cutterDiam)
+    return feedRate/(numFlutes*chipload)
+
+def rpm_min(cutterDiam=6, numFlutes=2, material=hardwood, feedRate=750):
+    s = InterpolatedUnivariateSpline(material["max"]["diam"], material["max"]["chipload"],k=1)
     chipload = s(cutterDiam)
     return feedRate/(numFlutes*chipload)
