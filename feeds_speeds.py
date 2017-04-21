@@ -3,149 +3,51 @@
 # Calculates RPM for given feed rate, and vice versa.
 
 
-# define min/max chipload empty dictionary
-cl_min = {}
-cl_max = {}
-
 # list of spindle diameters
 diams = [3.175, 6.35, 9.525, 12.7]
 
-# populate il chipload dictionaries
-hardwood = {}
-hardwood["min"] = {
-            diams[0]:0.0762,
-            diams[1]:0.2286,
-            diams[2]:0.381,
-            diams[3]:0.4826
-        }
-hardwood["max"] = {
-            diams[0]:0.127,
-            diams[1]:0.2794,
-            diams[2]:0.4572,
-            diams[3]:0.5334
-        }
+# populate chipload dictionaries
+hardwood = {
+        "min" : {"diam":diams, "chipload":[0.0762, 0.2286, 0.381, 0.4826]},
+        "max" : {"diam":diams, "chipload":[0.127, 0.2794, 0.4572, 0.5334]}}
 
-softply = {}
-softply["min"] = {
-            diams[0]:0.1016,
-            diams[1]:0.2794,
-            diams[2]:0.4318,
-            diams[3]:0.5334
-        }
-softply["max"] = {
-            diams[0]:0.1524,
-            diams[1]:0.3302,
-            diams[2]:0.508,
-            diams[3]:0.5842
-        }
+softply = {
+        "min" : {"diam":diams, "chipload":[0.1016, 0.2794, 0.4318, 0.5334]},
+        "max" : {"diam":diams, "chipload":[0.1524, 0.3302, 0.508, 0.5842]}}
 
-mdf = {}
-mdf["min"] = {
-            diams[0]:0.1016,
-            diams[1]:0.3302,
-            diams[2]:0.508,
-            diams[3]:0.635
-        }
-mdf["max"] = {
-            diams[0]:0.1778,
-            diams[1]:0.4064,
-            diams[2]:0.5842,
-            diams[3]:0.6858
-        }
+mdf = {
+        "min" : {"diam":diams, "chipload":[0.1016, 0.3302, 0.508, 0.635]},
+        "max" : {"diam":diams, "chipload":[0.1778, 0.4064, 0.5842, 0.6858]}}
 
-lam = {}
-lam["min"] = {
-            diams[0]:0.0762,
-            diams[1]:0.2286,
-            diams[2]:0.381,
-            diams[3]:0.5842
-        }
-lam["max"] = {
-            diams[0]:0.127,
-            diams[1]:0.3048,
-            diams[2]:0.4572,
-            diams[3]:0.635
-        }
+lam = {
+        "min" : {"diam":diams, "chipload":[0.0762, 0.2286, 0.381, 0.5842]},
+        "max" : {"diam":diams, "chipload":[0.127, 0.3048, 0.4572, 0.635]}}
 
-phen = {}
-phen["min"] = {
-            diams[0]:0.1016,
-            diams[1]:0.2794,
-            diams[2]:0.4318,
-            diams[3]:0.6096
-        }
-phen["max"] = {
-            diams[0]:0.127,
-            diams[1]:0.3048,
-            diams[2]:0.4572,
-            diams[3]:0.6604
-        }
-plastic_hard = {}
-plastic_hard["min"] = {
-            diams[0]:0.0508,
-            diams[1]:0.1524,
-            diams[2]:0.2032,
-            diams[3]:0.254
-        }
-plastic_hard["max"] = {
-            diams[0]:0.1016,
-            diams[1]:0.2286,
-            diams[2]:0.254,
-            diams[3]:0.3048
-        }
+phen = {
+        "min" : {"diam":diams, "chipload":[0.1016, 0.2794, 0.4318, 0.6096]},
+        "max" : {"diam":diams, "chipload":[0.127, 0.3048, 0.4572, 0.6604]}}
 
-plastic_soft = {}
-plastic_soft["min"] = {
-            diams[0]:0.0762,
-            diams[1]:0.1778,
-            diams[2]:0.254,
-            diams[3]:0.3048
-        }
-plastic_soft["max"] = {
-            diams[0]:0.1524,
-            diams[1]:0.254,
-            diams[2]:0.3048,
-            diams[3]:0.4064
-        }
+plastic_hard = {
+        "min" : {"diam":diams, "chipload":[0.0508, 0.1524, 0.2032, 0.254]},
+        "max" : {"diam":diams, "chipload":[ 0.1016, 0.2286, 0.254, 0.3048]}}
 
-solid_surface = {}
-solid_surface["min"] = {
-            diams[0]:0.0508,
-            diams[1]:0.1524,
-            diams[2]:0.2032,
-            diams[3]:0.254
-        }
-solid_surface["max"] = {
-            diams[0]:0.1016,
-            diams[1]:0.2286,
-            diams[2]:0.254,
-            diams[3]:0.3048
-        }
+plastic_soft = {
+        "min" : {"diam":diams, "chipload":[0.0762, 0.1778, 0.254, 0.3048]},
+        "max" : {"diam":diams, "chipload":[0.1524, 0.254, 0.3048, 0.4064]}}
+
+solid_surface = {
+        "min" : {"diam":diams, "chipload":[0.0508, 0.1524, 0.2032, 0.254]},
+        "max" : {"diam":diams, "chipload":[0.1016, 0.2286, 0.254, 0.3048]}}
 
 acrylic = {
-    "min" : {
-        diams[0]:0.0762,
-        diams[1]:0.2032,
-        diams[2]:0.254,
-        diams[3]:0.3048
-    },
-    "max" : {
-        diams[0]:0.127,
-        diams[1]:0.254,
-        diams[2]:0.3048,
-        diams[3]:0.381
-    }}
+        "min" : {"diam":diams, "chipload":[0.0762, 0.2032, 0.254, 0.3048]},
+        "max" : {"diam":diams, "chipload":[0.127, 0.254, 0.3048, 0.381]}}
 
 aluminium = {
-    "min" : {
-        diams[0]:0.0762,
-        diams[1]:0.127,
-        diams[2]:0.1524,
-        diams[3]:0.2032
-    },
-    "max" : {
-        diams[0]:0.127,
-        diams[1]:0.1778,
-        diams[2]:0.2032,
-        diams[3]:0.254
-    }}
+        "min" : {"diam":diams, "chipload":[0.0762, 0.127, 0.1524, 0.2032]},
+        "max" : {"diam":diams, "chipload":[0.127, 0.1778, 0.2032, 0.254]}}
+
+def rpm_max(cutterDiam=6, numFlutes=2 material=hardwood, feedRate=750):
+    s = InterpolatedUnivariateSpline(material["min"]["diam"], material["min"]["chipload"],k=1)
+    chipload = s(cutterDiam)
+    return feedRate/(numFlutes*chipload)
