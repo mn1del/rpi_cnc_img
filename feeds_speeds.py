@@ -3,6 +3,9 @@
 # Calculates RPM for given feed rate, and vice versa.
 
 
+from scipy.interpolate import InterpolateUnivariateSpline
+
+
 # list of spindle diameters
 diams = [3.175, 6.35, 9.525, 12.7]
 
