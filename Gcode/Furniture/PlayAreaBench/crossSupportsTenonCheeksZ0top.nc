@@ -1,6 +1,6 @@
 %
 (1001)
-(crosssupportstenons1_ z0 stock top)
+(crosssupportstenoncheeks_ z0 stock top)
 (T1  D=22 CR=0 - ZMIN=-6.25 - flat end mill)
 G90 G94
 G17
