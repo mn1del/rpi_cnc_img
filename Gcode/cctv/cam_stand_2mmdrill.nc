@@ -1,0 +1,30 @@
+%
+(1001)
+(Z0 stock bottom left)
+(T2  D=2 CR=0 TAPER=118deg - ZMIN=-1.101 - drill)
+G90 G94
+G17
+G21
+
+(Drill1)
+M9
+T2 M6
+S10000 M3
+G54
+M9
+G0 X122 Y50
+Z33
+Z23
+Z5
+Z2
+G1 Z-1.101 F500
+G0 Z23
+X101
+Z5
+Z2
+G1 Z-1.101 F500
+G0 Z23
+Z33
+M9
+M30
+%
