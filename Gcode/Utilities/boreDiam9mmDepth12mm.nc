@@ -1,0 +1,32 @@
+%
+(1001)
+(z0 centre circle stock bottom)
+(T1  D=6 CR=0 - ZMIN=0 - flat end mill)
+G90 G94
+G17
+G21
+
+(2D Contour1 2)
+M9
+T1 M6
+S8000 M3
+G54
+M9
+G0 X-0.3 Y-0.6
+Z27
+Z17
+G1 Z13 F283.3
+Z0.6
+G18 G2 X0.3 Z0 I0.6
+G1 X0.9 F850
+G17 G3 X1.5 Y0 J0.6
+X-1.5 I-1.5
+X1.5 I1.5
+X0.9 Y0.6 I-0.6
+G1 X0.3
+G18 G3 X-0.3 Z0.6 K0.6
+G0 Z27
+G17
+M9
+M30
+%
