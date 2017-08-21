@@ -1,0 +1,37 @@
+%
+(1001)
+(z0 slate machine -5-5)
+(T1  D=7 CR=0 TAPER=118deg - ZMIN=0 - drill)
+G90 G94
+G17
+G21
+
+(Drill3)
+M9
+T1 M6
+(2.5mm tip overhang)
+S3500 M3
+G54
+M9
+G0 X-173.905 Y-53.8
+Z30
+Z20
+Z5
+G1 Z0 F400
+G0 Z20
+X-1303.905
+Z5
+G1 Z0 F400
+G0 Z20
+X-1356.605 Y-186.5
+Z5
+G1 Z0 F400
+G0 Z20
+Y-538.5
+Z5
+G1 Z0 F400
+G0 Z20
+Z30
+M9
+M30
+%
