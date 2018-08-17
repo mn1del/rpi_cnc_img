@@ -1,0 +1,26 @@
+%
+(1001)
+(origin stock top)
+(T1  D=5 CR=0 TAPER=118deg - ZMIN=-2.002 - drill)
+G90 G94
+G17
+G21
+
+(Drill1)
+M9
+T1 M6
+S6000 M3
+G54
+G0 X-273.849 Y-50
+Z30
+Z20
+Z17
+G1 Z7 F750
+G0 Z7.1
+G1 Z-1 F750
+G0 Z-0.9
+G1 Z-2.002 F750
+G0 Z20
+Z30
+M30
+%
