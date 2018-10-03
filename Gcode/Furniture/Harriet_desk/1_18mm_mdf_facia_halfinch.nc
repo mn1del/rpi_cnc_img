@@ -1,5 +1,5 @@
 %
-(1_18mm_mdf_facia_halfinch)
+(1001)
 (origin stock bottom)
 (T1  D=12.7 CR=0 - ZMIN=10 - flat end mill)
 G90 G94
