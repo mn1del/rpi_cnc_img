@@ -1,0 +1,30 @@
+%
+(1001)
+(originhole top centre)
+(T1  D=5 CR=0 - ZMIN=-6.5 - flat end mill)
+G90 G94
+G17
+G21
+
+(2D Contour1)
+M9
+T1 M6
+S8000 M3
+G54
+G0 X2 Y-0.5
+Z15
+Z5
+G1 Z1 F333.3
+Z-6
+G18 G2 X2.5 Z-6.5 I0.5
+G1 X3 F850
+G17 G3 X3.5 Y0 J0.5
+X-3.5 I-3.5
+X3.5 I3.5
+X3 Y0.5 I-0.5
+G1 X2.5
+G18 G3 X2 Z-6 K0.5
+G0 Z15
+G17
+M30
+%
